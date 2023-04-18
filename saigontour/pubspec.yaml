@@ -1,19 +1,43 @@
 name: saigontour
 description: A new Flutter project.
+
 publish_to: 'none'
-version: 0.1.0
+
+version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^0.22.0
+  intl: ^0.17.0
+  animations: ^2.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+
 
 flutter:
+
   uses-material-design: true
+
+  assets:
+    - assets/image/
+    - assets/icon/
+
+  fonts:
+    - family: SF Pro
+      fonts:
+        - asset: assets/font/SF-Pro-Display-Black.ttf
+        - asset: assets/font/SF-Pro-Display-Bold.ttf
+        - asset: assets/font/SF-Pro-Display-Light.ttf
+        - asset: assets/font/SF-Pro-Display-Medium.ttf
+        - asset: assets/font/SF-Pro-Display-Regular.ttf
+        - asset: assets/font/SF-Pro-Display-Semibold.ttf
+        - asset: assets/font/SF-Pro-Display-Thin.ttf
+        - asset: assets/font/SF-Pro-Display-Ultralight.ttf
