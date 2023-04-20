@@ -3,11 +3,13 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/page/login_page.dart';
 
 import 'home_page.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
+  static final MyBottomNavigationBar instance = new MyBottomNavigationBar();
   const MyBottomNavigationBar({Key? key}) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     HomePage.instance,
     LoginPage(),
     LoginPage(),
-    LoginPage()
+    LoginPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -35,6 +37,9 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
       home: Scaffold(
         body: pages[_selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: blackBG,
+          selectedItemColor: purpButton,
+          unselectedItemColor: grayText,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,

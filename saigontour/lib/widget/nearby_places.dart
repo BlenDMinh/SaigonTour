@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/models/nearby_places_model.dart';
 import 'package:saigontour/page/tourist_details_page.dart';
 import 'package:saigontour/widget/distance.dart';
@@ -16,6 +17,7 @@ class NearbyPlaces extends StatelessWidget {
             height: 135,
             width: double.maxFinite,
             child: Card(
+              color: blackTextFild,
               elevation: 0.4,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -49,14 +51,18 @@ class NearbyPlaces extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               "Sea of Peace",
                               style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: littleWhite),
                             ),
-                            const Text("Portic Team"),
+                            Text(
+                              "Portic Team",
+                              style:
+                                  TextStyle(fontSize: 16, color: littleWhite),
+                            ),
                             const SizedBox(height: 10),
                             // DISTANCE WIDGET
                             const Distance(),
@@ -68,25 +74,24 @@ class NearbyPlaces extends StatelessWidget {
                                   color: Colors.yellow.shade700,
                                   size: 14,
                                 ),
-                                const Text(
+                                Text(
                                   "4.5",
                                   style: TextStyle(
-                                    fontSize: 12,
-                                  ),
+                                      fontSize: 12, color: littleWhite),
                                 ),
                                 const Spacer(),
                                 RichText(
                                   text: TextSpan(
                                       style: TextStyle(
                                         fontSize: 20,
-                                        color: Theme.of(context).primaryColor,
+                                        color: purpButton,
                                       ),
                                       text: "\$22",
                                       children: const [
                                         TextSpan(
                                             style: TextStyle(
                                               fontSize: 12,
-                                              color: Colors.black54,
+                                              color: purpButton,
                                             ),
                                             text: "/ Person")
                                       ]),

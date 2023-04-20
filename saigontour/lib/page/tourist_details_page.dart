@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/widget/distance.dart';
 
 class TouristDetailsPage extends StatelessWidget {
@@ -13,6 +14,7 @@ class TouristDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: blackBG,
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(10),
@@ -33,7 +35,7 @@ class TouristDetailsPage extends StatelessWidget {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.4),
+                          color: blackTextFild,
                           spreadRadius: 0,
                           blurRadius: 20,
                           offset: const Offset(0, 10),
@@ -80,12 +82,12 @@ class TouristDetailsPage extends StatelessWidget {
                   children: [
                     Text(
                       "Sea of Peace",
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: TextStyle(color: littleWhite),
                     ),
                     const SizedBox(height: 5),
                     Text(
                       "Portic Team 8km",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: TextStyle(color: littleWhite),
                     )
                   ],
                 ),
@@ -95,7 +97,10 @@ class TouristDetailsPage extends StatelessWidget {
                   child: IconButton(
                     onPressed: () {},
                     iconSize: 20,
-                    icon: const Icon(Ionicons.chatbubble_ellipses_outline),
+                    icon: const Icon(
+                      Ionicons.chatbubble_ellipses_outline,
+                      color: purpButton,
+                    ),
                   ),
                 ),
                 Column(
@@ -103,7 +108,7 @@ class TouristDetailsPage extends StatelessWidget {
                   children: [
                     Text(
                       "4.6",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: TextStyle(color: littleWhite),
                     ),
                     Icon(
                       Ionicons.star,
@@ -122,12 +127,8 @@ class TouristDetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      "01d:32h:56m",
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                    ),
+                    Text("01d:32h:56m",
+                        style: TextStyle(fontSize: 20, color: whiteColor)),
                     const SizedBox(height: 5),
                     Text(
                       "Started in",
@@ -143,7 +144,7 @@ class TouristDetailsPage extends StatelessWidget {
               width: double.maxFinite,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+                color: blackTextFild,
                 image: const DecorationImage(
                   image: AssetImage('assets/map.png'),
                   fit: BoxFit.cover,
@@ -156,6 +157,7 @@ class TouristDetailsPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
+                backgroundColor: purpButton,
                 elevation: 0,
                 shape: const StadiumBorder(),
                 padding: const EdgeInsets.symmetric(

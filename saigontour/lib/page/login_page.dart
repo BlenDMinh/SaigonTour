@@ -9,6 +9,8 @@ import 'package:saigontour/page/welcome_page.dart.dart';
 import 'package:saigontour/widget/main_button.dart';
 import 'package:saigontour/widget/text_fild.dart';
 
+import 'my_bottom_navigation_bar.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -89,10 +91,9 @@ class _LoginPageState extends State<LoginPage> {
                     TextButton(
                       onPressed: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (builder) => SignUpPage()));
-                      },
+              context,
+              MaterialPageRoute(builder: (context) => SignUpPage()),
+            );},
                       child: RichText(
                         text: TextSpan(children: [
                           TextSpan(
@@ -117,6 +118,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+      
     );
   }
 }

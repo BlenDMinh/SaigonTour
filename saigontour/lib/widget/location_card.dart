@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saigontour/consts/colors.dart';
 
 class LocationCard extends StatelessWidget {
   const LocationCard({Key? key}) : super(key: key);
@@ -6,6 +7,7 @@ class LocationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: blackTextFild,
       elevation: 0.4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
@@ -20,16 +22,12 @@ class LocationCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Your Location",
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Theme.of(context).primaryColor,
-                      ),
-                ),
+                Text("Your Location",
+                    style: TextStyle(fontSize: 20, color: purpButton)),
                 const SizedBox(height: 5),
                 Text(
                   "United States, New York",
-                  style: Theme.of(context).textTheme.labelLarge,
+                  style: TextStyle(fontSize: 14, color: littleWhite),
                 )
               ],
             )

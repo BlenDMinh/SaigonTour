@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saigontour/page/home_page.dart';
+import 'package:saigontour/page/my_bottom_navigation_bar.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -7,7 +8,9 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: SafeArea(
+        
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -45,7 +48,7 @@ class WelcomePage extends StatelessWidget {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomePage(),
+                            builder: (context) => const MyBottomNavigationBar(),
                           ),
                         );
                       },

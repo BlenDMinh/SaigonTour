@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:saigontour/consts/colors.dart';
 
 class Distance extends StatelessWidget {
   const Distance({Key? key}) : super(key: key);
@@ -10,13 +11,13 @@ class Distance extends StatelessWidget {
       children: [
         const Icon(
           Ionicons.locate_outline,
-          color: Colors.black54,
+          color: purpButton,
           size: 14,
         ),
         const Text(
           "Accra",
           style: TextStyle(
-            color: Colors.black54,
+            color: grayText,
           ),
         ),
         const SizedBox(width: 3),
@@ -26,7 +27,7 @@ class Distance extends StatelessWidget {
             return Expanded(
               child: Container(
                 height: 2,
-                color: index.isOdd ? Colors.transparent : Colors.black54,
+                color: index.isOdd ? Colors.transparent : grayText,
               ),
             );
           },
@@ -35,13 +36,13 @@ class Distance extends StatelessWidget {
         Icon(
           Ionicons.location_outline,
           size: 14,
-          color: Theme.of(context).primaryColor,
+          color: purpButton,
         ),
         const SizedBox(width: 2),
         Text(
           "Kumasi",
           style: TextStyle(
-            color: Theme.of(context).primaryColor,
+            color: purpButton,
           ),
         )
       ],
