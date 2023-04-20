@@ -45,11 +45,11 @@ public class Customer {
 
     public Customer(CustomerModel model) {
         this(
-            model.getUserId() == -1 ? -1 : model.getUserId(),
+            model.getUserId() == null || model.getUserId() == -1 ? -1 : model.getUserId(),
             model.getFullname(),
             model.getAge(),
             model.getPhoneNumber(),
-            new LoginDetail(),
+            new LoginDetail(-1, model.getUserId(), "", Permission.CUSTOMER),
             new HashSet<>(),
             new ArrayList<>()
         );

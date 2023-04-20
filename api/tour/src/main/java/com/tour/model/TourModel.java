@@ -18,6 +18,7 @@ public class TourModel {
     private Integer tourId;
     private String name;
     private String description;
+    private float price;
     private Date startTime;
     private List<String> tourPath;
     private Integer maxCustomerNumber;
@@ -27,8 +28,9 @@ public class TourModel {
         this(
             entity.getTourId(), 
             entity.getName(), 
-            entity.getDescription(), 
-            entity.getStartTime(), 
+            entity.getDescription(),
+            entity.getPrice(),
+            entity.getStartTime(),
             entity.getTourPath(), 
             entity.getMaxCustomerNumber(), 
             entity.getTourDetails().stream().map(e -> new TourDetailModel(e)).toList()

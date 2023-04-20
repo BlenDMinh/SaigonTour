@@ -26,6 +26,7 @@ public class Tour {
     private Integer tourId;
     private String name;
     private String description;
+    private float price;
 
     @Temporal(TemporalType.DATE)
     private Date startTime;

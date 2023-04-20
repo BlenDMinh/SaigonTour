@@ -19,4 +19,8 @@ public class LoginResponse {
     public static LoginResponse empty() {
         return new LoginResponse("", null, null);
     }
+
+    public boolean isEmpty() {
+        return token.isBlank() || token.isEmpty();
+    }
 }

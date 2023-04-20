@@ -8,4 +8,5 @@ import com.tour.entity.LoginSession;
 
 public interface LoginSessionRepository extends CrudRepository<LoginSession, Integer> {
     Optional<LoginSession> findByUserId(Integer userId);
+    Optional<LoginSession> findByToken(String token);
 }
