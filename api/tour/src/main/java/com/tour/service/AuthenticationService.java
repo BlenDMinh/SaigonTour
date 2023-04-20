@@ -8,4 +8,5 @@ public interface AuthenticationService {
     void registerCustomer(CustomerModel customer, String password);
     LoginResponse login(LoginRequest request);
     void logout(Integer userId);
+    void changePassword(String phoneNumber, String password);
 }

@@ -24,7 +24,6 @@ public class AuthenticationServiceV1 implements AuthenticationService {
     private final LoginSessionRepository loginSessionRepository;
     private final CustomerService customerService;
     
-    @Autowired
     public AuthenticationServiceV1(PasswordUtil passwordUtil, LoginDetailRepository loginDetailRepository, LoginSessionRepository loginSessionRepository, CustomerService customerService) {
         this.passwordUtil = passwordUtil;
         this.loginDetailRepository = loginDetailRepository;
@@ -62,5 +61,11 @@ public class AuthenticationServiceV1 implements AuthenticationService {
     @Override
     public void registerCustomer(CustomerModel customer, String password) {
         customerService.save(customer);
+    }
+
+    @Override
+    public void changePassword(String phoneNumber, String password) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'changePassword'");
     }
 }
