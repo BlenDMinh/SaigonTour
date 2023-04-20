@@ -17,7 +17,7 @@ import lombok.Setter;
 public class LoginSession {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer _loginSessionId;
-    private User user;
+    private Integer userId;
     private String token;
     private Permission permission;
 }

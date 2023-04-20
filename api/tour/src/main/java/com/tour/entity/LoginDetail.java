@@ -6,7 +6,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +20,7 @@ public class LoginDetail {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer _loginDetailId;
 
-    @OneToOne(mappedBy = "loginDetail")
-    private User user;
+    private Integer userId;
 
     private String password;
     @Enumerated(EnumType.ORDINAL)
