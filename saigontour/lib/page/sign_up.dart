@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:saigontour/core/colors.dart';
-import 'package:saigontour/core/space.dart';
-import 'package:saigontour/core/text_style.dart';
+
+import 'package:saigontour/consts/colors.dart';
+import 'package:saigontour/consts/space.dart';
+import 'package:saigontour/consts/text_style_log.dart';
+
 import 'package:saigontour/widget/main_button.dart';
 import 'package:saigontour/widget/text_fild.dart';
 
@@ -39,33 +42,33 @@ class _SignUpPageState extends State<SignUpPage> {
               SpaceVH(height: 60.0),
               textFild(
                 controller: userName,
-                image: 'user.svg',
+                image: CupertinoIcons.person,
                 keyBordType: TextInputType.name,
                 hintTxt: 'Full Name',
               ),
               textFild(
                 controller: userEmail,
                 keyBordType: TextInputType.emailAddress,
-                image: 'user.svg',
+                image: CupertinoIcons.person,
                 hintTxt: 'Email Address',
               ),
               textFild(
                 controller: userPh,
-                image: 'user.svg',
+                image: CupertinoIcons.phone,
                 keyBordType: TextInputType.phone,
                 hintTxt: 'Phone Number',
               ),
               textFild(
                 controller: userPass,
                 isObs: true,
-                image: 'hide.svg',
+                image: CupertinoIcons.lock,
                 hintTxt: 'Password',
               ),
               SpaceVH(height: 80.0),
               Mainbutton(
                 onTap: () {},
                 text: 'Sign Up',
-                btnColor: blueButton,
+                btnColor: purpButton,
               ),
               SpaceVH(height: 20.0),
               TextButton(

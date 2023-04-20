@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:saigontour/core/colors.dart';
-import 'package:saigontour/core/text_style.dart';
+import 'package:saigontour/consts/colors.dart';
+import 'package:saigontour/consts/text_style_log.dart';
 
 class Mainbutton extends StatelessWidget {
   final Function() onTap;

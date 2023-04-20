@@ -16,6 +16,9 @@ dependencies:
   flutter_svg: ^0.22.0
   intl: ^0.17.0
   animations: ^2.0.1
+  google_fonts: ^3.0.1
+  ionicons: ^0.2.1
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:
@@ -28,8 +31,9 @@ flutter:
 
   assets:
     - assets/image/
-    - assets/icon/
-
+    - assets/icons/
+    - assets/
+    - assets/places/
   fonts:
     - family: SF Pro
       fonts:

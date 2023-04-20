@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saigontour/core/colors.dart';
+import 'colors.dart';
 
 const TextStyle headline = TextStyle(
   fontSize: 28,

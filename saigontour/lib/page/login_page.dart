@@ -1,10 +1,14 @@
+import 'package:saigontour/page/home_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:saigontour/core/colors.dart';
-import 'package:saigontour/core/space.dart';
-import 'package:saigontour/core/text_style.dart';
+import 'package:saigontour/consts/colors.dart';
+import 'package:saigontour/consts/space.dart';
+import 'package:saigontour/consts/text_style_log.dart';
 import 'package:saigontour/page/sign_up.dart';
+import 'package:saigontour/page/welcome_page.dart.dart';
 import 'package:saigontour/widget/main_button.dart';
 import 'package:saigontour/widget/text_fild.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -38,12 +42,12 @@ class _LoginPageState extends State<LoginPage> {
               SpaceVH(height: 60.0),
               textFild(
                 controller: phoneNum,
-                image: 'user.svg',
+                image: CupertinoIcons.person,
                 hintTxt: 'Phone Number',
               ),
               textFild(
                 controller: userPass,
-                image: 'hide.svg',
+                image: CupertinoIcons.lock,
                 isObs: true,
                 hintTxt: 'Password',
               ),
@@ -67,9 +71,11 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     Mainbutton(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()) );
+                      },
                       text: 'Sign in',
-                      btnColor: blueButton,
+                      btnColor: purpButton,
                     ),
                     SpaceVH(height: 20.0),
                     Mainbutton(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:saigontour/core/style.dart';
+import 'package:saigontour/consts/style.dart';
+import 'package:saigontour/page/home_page.dart';
 import 'package:saigontour/page/login_page.dart';
+import 'package:saigontour/page/welcome_page.dart.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: Stlyes.themeData(),
-        home: LoginPage(),
+        home: WelcomePage(),
       ),
     );
   }
