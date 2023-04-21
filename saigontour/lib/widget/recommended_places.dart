@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/models/recommended_places_model.dart';
 import 'package:saigontour/page/tourist_details_page.dart';
 
@@ -18,6 +19,7 @@ class RecommendedPlaces extends StatelessWidget {
               width: 220,
               child: Card(
                 elevation: 0.4,
+                color: blackTextFild,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(12),
@@ -50,12 +52,12 @@ class RecommendedPlaces extends StatelessWidget {
                         const SizedBox(height: 5),
                         Row(
                           children: [
-                            const Text(
+                            Text(
                               "St Regis Bora Bora",
                               style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: littleWhite),
                             ),
                             const Spacer(),
                             Icon(
@@ -63,11 +65,10 @@ class RecommendedPlaces extends StatelessWidget {
                               color: Colors.yellow.shade700,
                               size: 14,
                             ),
-                            const Text(
+                            Text(
                               "4.4",
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
+                              style:
+                                  TextStyle(fontSize: 12, color: littleWhite),
                             )
                           ],
                         ),
@@ -76,15 +77,14 @@ class RecommendedPlaces extends StatelessWidget {
                           children: [
                             Icon(
                               Ionicons.location,
-                              color: Theme.of(context).primaryColor,
+                              color: purpButton,
                               size: 16,
                             ),
                             const SizedBox(width: 5),
-                            const Text(
+                            Text(
                               "French Polynesia",
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
+                              style:
+                                  TextStyle(fontSize: 12, color: littleWhite),
                             )
                           ],
                         )

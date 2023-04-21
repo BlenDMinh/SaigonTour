@@ -23,9 +23,15 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: BackButton(
+          color: purpButton,
+        ),
+        backgroundColor: blackBG,
+      ),
       backgroundColor: blackBG,
       body: Padding(
-        padding: EdgeInsets.only(top: 50.0),
+        padding: EdgeInsets.all(0.0),
         child: SingleChildScrollView(
           child: Column(
             children: [

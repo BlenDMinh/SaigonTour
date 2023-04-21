@@ -44,3 +44,6 @@ final Shader linearGradient = const LinearGradient(
 
 final flutterPurple = Color.fromARGB(255, 178, 164, 255);
 final homeBGColor = Color.fromARGB(255, 97, 85, 166);
+
+final littleWhite = Colors.white70;
+final littleBlack = Colors.black12;
