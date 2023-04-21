@@ -1,3 +1,5 @@
+import 'package:saigontour/models/login_request.dart';
+import 'package:saigontour/models/login_response.dart';
 import 'package:saigontour/page/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +8,11 @@ import 'package:saigontour/consts/space.dart';
 import 'package:saigontour/consts/text_style_log.dart';
 import 'package:saigontour/page/sign_up.dart';
 import 'package:saigontour/page/welcome_page.dart.dart';
+import 'package:saigontour/service/authentication_service.dart';
 import 'package:saigontour/widget/main_button.dart';
 import 'package:saigontour/widget/text_fild.dart';
 
 import 'my_bottom_navigation_bar.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,6 +22,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final AuthenticationService service = AuthenticationService();
   TextEditingController phoneNum = TextEditingController();
   TextEditingController userPass = TextEditingController();
   @override
@@ -74,7 +77,14 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Mainbutton(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()) );
+                        service
+                            .login(LoginRequest.ByPassword(
+                                phoneNum.text, userPass.text))
+                            .then((value) => {print(value)});
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
                       },
                       text: 'Sign in',
                       btnColor: purpButton,
@@ -91,9 +101,10 @@ class _LoginPageState extends State<LoginPage> {
                     TextButton(
                       onPressed: () {
                         Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SignUpPage()),
-            );},
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUpPage()),
+                        );
+                      },
                       child: RichText(
                         text: TextSpan(children: [
                           TextSpan(
@@ -118,7 +129,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      
     );
   }
 }
