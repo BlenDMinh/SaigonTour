@@ -11,7 +11,6 @@ import 'package:saigontour/widget/text_fild.dart';
 
 import 'my_bottom_navigation_bar.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -33,25 +32,25 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               SpaceVH(height: 50.0),
               Text(
-                'Welcome Back!',
+                'Chào mừng trở lại!',
                 style: headline1,
               ),
               SpaceVH(height: 10.0),
               Text(
-                'Please sign in to your account',
+                'Vui lòng đăng nhập vào tài khoản của bạn',
                 style: headline3,
               ),
               SpaceVH(height: 60.0),
               textFild(
                 controller: phoneNum,
-                image: CupertinoIcons.person,
-                hintTxt: 'Phone Number',
+                image: CupertinoIcons.phone,
+                hintTxt: 'Số điện thoại',
               ),
               textFild(
                 controller: userPass,
                 image: CupertinoIcons.lock,
                 isObs: true,
-                hintTxt: 'Password',
+                hintTxt: 'Mật khẩu',
               ),
               SpaceVH(height: 10.0),
               Align(
@@ -61,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextButton(
                     onPressed: () {},
                     child: Text(
-                      'Forgot Password?',
+                      'Quên mật khẩu?',
                       style: headline3,
                     ),
                   ),
@@ -74,15 +73,18 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Mainbutton(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()) );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
                       },
-                      text: 'Sign in',
+                      text: 'Đăng nhập',
                       btnColor: purpButton,
                     ),
                     SpaceVH(height: 20.0),
                     Mainbutton(
                       onTap: () {},
-                      text: 'Sign in with google',
+                      text: 'Đăng nhập với tài khoản google',
                       image: 'google.png',
                       btnColor: white,
                       txtColor: blackBG,
@@ -91,19 +93,20 @@ class _LoginPageState extends State<LoginPage> {
                     TextButton(
                       onPressed: () {
                         Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SignUpPage()),
-            );},
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUpPage()),
+                        );
+                      },
                       child: RichText(
                         text: TextSpan(children: [
                           TextSpan(
-                            text: 'Don\' have an account? ',
+                            text: 'Chưa có tài khoản? ',
                             style: headline.copyWith(
                               fontSize: 14.0,
                             ),
                           ),
                           TextSpan(
-                            text: ' Sign Up',
+                            text: ' Đăng ký',
                             style: headlineDot.copyWith(
                               fontSize: 14.0,
                             ),
@@ -118,7 +121,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      
     );
   }
 }

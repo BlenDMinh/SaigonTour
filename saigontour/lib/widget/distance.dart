@@ -15,8 +15,9 @@ class Distance extends StatelessWidget {
           size: 14,
         ),
         const Text(
-          "Accra",
+          "Vịnh Hạ Long",
           style: TextStyle(
+            fontSize: 12,
             color: grayText,
           ),
         ),
@@ -40,8 +41,9 @@ class Distance extends StatelessWidget {
         ),
         const SizedBox(width: 2),
         Text(
-          "Kumasi",
+          "Quảng Ninh",
           style: TextStyle(
+            fontSize: 12,
             color: purpButton,
           ),
         )

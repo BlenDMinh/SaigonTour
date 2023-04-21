@@ -27,28 +27,29 @@ class HomePage extends StatelessWidget {
           children: [
             const SizedBox(height: 10),
             const Text(
-              "Good Morning",
+              "Chào buổi sáng",
               style: TextStyle(fontSize: 13),
             ),
             Text(
               "Saigontour",
-              style: TextStyle(color: whiteColor, fontSize: 25),
+              style: TextStyle(
+                  color: whiteColor, fontSize: 25, fontWeight: FontWeight.w800),
             ),
           ],
         ),
         actions: [
           CustomIconButton(
             icon: Icon(
-              Ionicons.search_outline,
-              color: littleWhite,
+              Ionicons.search,
+              color: white,
             ),
           ),
           Padding(
             padding: EdgeInsets.only(left: 8.0, right: 12),
             child: CustomIconButton(
               icon: Icon(
-                Ionicons.notifications_outline,
-                color: littleWhite,
+                Ionicons.notifications,
+                color: white,
               ),
             ),
           ),
@@ -70,13 +71,14 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Recommendation",
-                style: TextStyle(color: white, fontSize: 22),
+                "Gợi ý địa điểm ",
+                style: TextStyle(
+                    color: white, fontSize: 22, fontWeight: FontWeight.bold),
               ),
               TextButton(
                   onPressed: () {},
                   child: const Text(
-                    "View All",
+                    "Xem tất cả",
                     style: TextStyle(color: Colors.deepPurpleAccent),
                   ))
             ],
@@ -88,13 +90,14 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Nearby From You",
-                style: TextStyle(color: white, fontSize: 22),
+                "Gần bạn",
+                style: TextStyle(
+                    color: white, fontSize: 22, fontWeight: FontWeight.bold),
               ),
               TextButton(
                   onPressed: () {},
                   child: const Text(
-                    "View All",
+                    "Xem tất cả",
                     style: TextStyle(color: Colors.deepPurpleAccent),
                   ))
             ],
