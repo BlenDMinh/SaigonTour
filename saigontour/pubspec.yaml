@@ -19,6 +19,8 @@ dependencies:
   google_fonts: ^3.0.1
   ionicons: ^0.2.1
   get: ^4.6.5
+  http: ^0.13.5
+  json_serializable: ^6.6.1
 
 dev_dependencies:
   flutter_test:

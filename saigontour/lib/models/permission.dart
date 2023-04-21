@@ -1,0 +1,1 @@
+enum Permission { CUSTOMER, ADMIN }
