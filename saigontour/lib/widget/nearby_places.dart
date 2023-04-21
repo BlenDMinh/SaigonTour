@@ -52,14 +52,14 @@ class NearbyPlaces extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Sea of Peace",
+                              "Thiên đường biển",
                               style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: littleWhite),
                             ),
                             Text(
-                              "Portic Team",
+                              "Team hướng dẫn",
                               style:
                                   TextStyle(fontSize: 16, color: littleWhite),
                             ),
@@ -83,17 +83,17 @@ class NearbyPlaces extends StatelessWidget {
                                 RichText(
                                   text: TextSpan(
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 15,
                                         color: purpButton,
                                       ),
-                                      text: "\$22",
+                                      text: "2.000.000 VND",
                                       children: const [
                                         TextSpan(
                                             style: TextStyle(
                                               fontSize: 12,
                                               color: purpButton,
                                             ),
-                                            text: "/ Person")
+                                            text: "/ Người")
                                       ]),
                                 )
                               ],

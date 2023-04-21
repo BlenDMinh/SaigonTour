@@ -56,24 +56,24 @@ class _SignUpPageState extends State<SignUpPage> {
                 controller: userEmail,
                 keyBordType: TextInputType.emailAddress,
                 image: CupertinoIcons.person,
-                hintTxt: 'Email Address',
+                hintTxt: 'Email',
               ),
               textFild(
                 controller: userPh,
                 image: CupertinoIcons.phone,
                 keyBordType: TextInputType.phone,
-                hintTxt: 'Phone Number',
+                hintTxt: 'Số điện thoại',
               ),
               textFild(
                 controller: userPass,
                 isObs: true,
                 image: CupertinoIcons.lock,
-                hintTxt: 'Password',
+                hintTxt: 'Mật khẩu',
               ),
               SpaceVH(height: 80.0),
               Mainbutton(
                 onTap: () {},
-                text: 'Sign Up',
+                text: 'Đăng ký',
                 btnColor: purpButton,
               ),
               SpaceVH(height: 20.0),
@@ -84,13 +84,13 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: RichText(
                   text: TextSpan(children: [
                     TextSpan(
-                      text: 'Have an account? ',
+                      text: 'Đã có tài khoản? ',
                       style: headline.copyWith(
                         fontSize: 14.0,
                       ),
                     ),
                     TextSpan(
-                      text: ' Sign In',
+                      text: ' Đăng nhập',
                       style: headlineDot.copyWith(
                         fontSize: 14.0,
                       ),

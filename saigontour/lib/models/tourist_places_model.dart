@@ -9,9 +9,9 @@ class TouristPlacesModel {
 }
 
 List<TouristPlacesModel> touristPlaces = [
-  TouristPlacesModel(name: "Mountain", image: "assets/icons/mountain.png"),
-  TouristPlacesModel(name: "Beach", image: "assets/icons/beach.png"),
-  TouristPlacesModel(name: "Forest", image: "assets/icons/forest.png"),
-  TouristPlacesModel(name: "City", image: "assets/icons/city.png"),
-  TouristPlacesModel(name: "Desert", image: "assets/icons/desert.png"),
+  TouristPlacesModel(name: "Núi", image: "assets/icons/mountain.png"),
+  TouristPlacesModel(name: "Biển", image: "assets/icons/beach.png"),
+  TouristPlacesModel(name: "Rừng", image: "assets/icons/forest.png"),
+  TouristPlacesModel(name: "Thành Phố", image: "assets/icons/city.png"),
+  TouristPlacesModel(name: "Khu du lịch", image: "assets/icons/desert.png"),
 ];

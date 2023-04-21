@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/page/home_page.dart';
 import 'package:saigontour/page/my_bottom_navigation_bar.dart';
 
@@ -8,9 +9,8 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      backgroundColor: blackBG,
       body: SafeArea(
-        
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -25,16 +25,16 @@ class WelcomePage extends StatelessWidget {
                   "Explore your journey \nonly with us",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: whiteColor),
                 ),
                 const SizedBox(height: 20),
                 const Text(
                   "All your vacations destinations are here,\nenjoy your holiday",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.black54,
+                    color: white,
                     fontSize: 16,
                   ),
                 ),

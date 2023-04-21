@@ -22,11 +22,11 @@ class LocationCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Your Location",
+                Text("Vị trí của bạn",
                     style: TextStyle(fontSize: 20, color: purpButton)),
                 const SizedBox(height: 5),
                 Text(
-                  "United States, New York",
+                  "TP Hồ Chí Minh, Việt Nam",
                   style: TextStyle(fontSize: 14, color: littleWhite),
                 )
               ],

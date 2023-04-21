@@ -81,12 +81,15 @@ class TouristDetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Sea of Peace",
-                      style: TextStyle(color: littleWhite),
+                      "Thiên đường biển",
+                      style: TextStyle(
+                          color: white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      "Portic Team 8km",
+                      "Team hướng dẫn 8km",
                       style: TextStyle(color: littleWhite),
                     )
                   ],
@@ -131,8 +134,8 @@ class TouristDetailsPage extends StatelessWidget {
                         style: TextStyle(fontSize: 20, color: whiteColor)),
                     const SizedBox(height: 5),
                     Text(
-                      "Started in",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      "Bắt đầu vào",
+                      style: TextStyle(color: littleWhite),
                     )
                   ],
                 ),
@@ -147,13 +150,13 @@ class TouristDetailsPage extends StatelessWidget {
                 color: blackTextFild,
                 image: const DecorationImage(
                   image: AssetImage('assets/map.png'),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fitHeight,
                 ),
               ),
             ),
             const SizedBox(height: 15),
             const Distance(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
