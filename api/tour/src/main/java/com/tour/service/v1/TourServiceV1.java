@@ -25,7 +25,7 @@ public class TourServiceV1 implements TourService {
         Iterable<Tour> tours = tourRepository.findAll();
         ArrayList<TourModel> tourModels = new ArrayList<>();
         for(Tour tour : tours)
-            tourModels.add(new TourModel(tour));
+            tourModels.add(TourModel.fromEntity(tour));
         return tourModels;
     }
 
@@ -35,25 +35,32 @@ public class TourServiceV1 implements TourService {
         if(entity.isEmpty())
             return Optional.empty();
         Tour tour = entity.get();
-        TourModel tourModel = new TourModel(tour);
+        TourModel tourModel = TourModel.fromEntity(tour);
         return Optional.of(tourModel);
     }
 
     @Override
-    public void save(TourModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    public TourModel save(TourModel model) {
+        Optional<Tour> eTour = tourRepository.findById(model.getTourId());
+        if(eTour.isEmpty()) {
+            Tour nTour = new Tour();
+            nTour = tourRepository.save(nTour);
+            return TourModel.fromEntity(nTour);
+        }
+        Tour _eTour = eTour.get();
+        Tour _nTour = new Tour(model);
+        _eTour.merge(_nTour);
+        tourRepository.save(_eTour);
+        return TourModel.fromEntity(_eTour);
     }
 
     @Override
     public void delete(TourModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        deleteById(model.getTourId());
     }
 
     @Override
     public void deleteById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+        tourRepository.deleteById(id);
     }
 }

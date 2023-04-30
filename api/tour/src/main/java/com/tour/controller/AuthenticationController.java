@@ -1,6 +1,7 @@
 package com.tour.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import com.tour.model.LoginResponse;
 import com.tour.model.RegisterInfo;
 import com.tour.service.AuthenticationService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/authen")
 public class AuthenticationController {

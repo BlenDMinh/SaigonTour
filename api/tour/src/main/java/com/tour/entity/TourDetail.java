@@ -3,6 +3,8 @@ package com.tour.entity;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.tour.model.TourDetailModel;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -36,4 +38,14 @@ public class TourDetail {
 
     @Enumerated(EnumType.ORDINAL)
     private UserType userType;
+
+    public TourDetail(TourDetailModel model) {
+        this(
+            model.getTourDetailId(),
+            model.getTour() != null ? new Tour(model.getTour().get()) : new Tour(),
+            model.getTourUser() != null ? new Customer(model.getTourUser().get()) : new Customer(),
+            model.getVehicle(),
+            model.getUserType()
+        );
+    }
 }

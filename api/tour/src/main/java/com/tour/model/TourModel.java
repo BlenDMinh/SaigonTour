@@ -1,5 +1,6 @@
 package com.tour.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class TourModel {
     private Integer maxCustomerNumber;
     private List<TourDetailModel> tourDetails;
     
-    public TourModel(Tour entity) {
+    private TourModel(Tour entity, boolean lazy) {
         this(
             entity.getTourId(), 
             entity.getName(), 
@@ -33,7 +34,15 @@ public class TourModel {
             entity.getStartTime(),
             entity.getTourPath(), 
             entity.getMaxCustomerNumber(), 
-            entity.getTourDetails().stream().map(e -> new TourDetailModel(e)).toList()
+            lazy ? new ArrayList<>() :entity.getTourDetails().stream().map(e -> TourDetailModel.fromEntity(e, true)).toList()
         );
+    }
+
+    public static TourModel fromEntity(Tour entity) {
+        return new TourModel(entity, false);
+    }
+
+    public static TourModel fromEntity(Tour entity, boolean constructFromTourDetail) {
+        return new TourModel(entity, constructFromTourDetail);
     }
 }

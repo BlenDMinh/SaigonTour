@@ -1,5 +1,6 @@
 package com.tour.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -23,10 +24,21 @@ public class CustomerModel {
     private Set<PaymentMethod> paymentMethods;
     private List<TourDetailModel> tourDetails;
 
-    public CustomerModel(Customer entity) {
+    private CustomerModel(Customer entity, boolean lazy) {
         this(entity.getUserId(), entity.getFullname(), entity.getAge(), entity.getPhoneNumber(), null, null);
         this.paymentMethods = entity.getPaymentMethods();
-        if(entity.getTourDetails() != null)
-            this.tourDetails = entity.getTourDetails().stream().map(e -> new TourDetailModel(e)).toList();
+        if(lazy)
+            this.tourDetails = new ArrayList<>();
+        else
+            if(entity.getTourDetails() != null)
+                this.tourDetails = entity.getTourDetails().stream().map(e -> TourDetailModel.fromEntity(e, true)).toList();
+    }
+
+    public static CustomerModel fromEntity(Customer entity) {
+        return new CustomerModel(entity, false);
+    }
+
+    public static CustomerModel fromEntity(Customer entity, boolean constructFromTourDetail) {
+        return new CustomerModel(entity, constructFromTourDetail);
     }
 }

@@ -3,6 +3,8 @@ package com.tour.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.tour.model.TourModel;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,4 +37,30 @@ public class Tour {
 
     @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TourDetail> tourDetails;
+
+    public Tour(TourModel model) {
+        this(
+            model.getTourId(),
+            model.getName(),
+            model.getDescription(),
+            model.getPrice(),
+            model.getStartTime(),
+            model.getTourPath(),
+            model.getMaxCustomerNumber(),
+            model.getTourDetails().stream().map((e) -> new TourDetail(e)).toList()
+        );
+    }
+
+    public Tour merge(Tour newTour) {
+        this.name = newTour.name;
+        this.description = newTour.description;
+        this.price = newTour.price;
+        this.startTime = newTour.startTime;
+        this.tourPath.clear();
+        this.tourPath.addAll(newTour.tourPath);
+        this.maxCustomerNumber = newTour.maxCustomerNumber;
+        this.tourDetails.clear();
+        this.tourDetails.addAll(newTour.tourDetails);
+        return this;
+    }
 }

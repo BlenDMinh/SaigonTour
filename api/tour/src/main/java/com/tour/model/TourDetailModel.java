@@ -21,23 +21,21 @@ public class TourDetailModel {
     private String vehicle;
     private UserType userType;
     
-    public TourDetailModel(TourDetail entity) {
+    private TourDetailModel(TourDetail entity, boolean lazy) {
         this(
             entity.getTourDetailId(),
-            Optional.of(new TourModel(entity.getTour())),
-            Optional.of(new CustomerModel(entity.getTourUser())),
+            lazy ? Optional.empty() : Optional.of(TourModel.fromEntity(entity.getTour(), true)),
+            lazy ? Optional.empty() : Optional.of(CustomerModel.fromEntity(entity.getTourUser(), true)),
             entity.getVehicle(),
             entity.getUserType()
         );
     }
 
-    public TourDetailModel(TourDetail entity, Boolean constructFromAnother) {
-        this(
-            entity.getTourDetailId(),
-            constructFromAnother ? Optional.empty() : Optional.of(new TourModel(entity.getTour())),
-            constructFromAnother ? Optional.empty() : Optional.of(new CustomerModel(entity.getTourUser())),
-            entity.getVehicle(),
-            entity.getUserType()
-        );
+    public static TourDetailModel fromEntity(TourDetail entity) {
+        return new TourDetailModel(entity, false);
+    }
+
+    public static TourDetailModel fromEntity(TourDetail entity, boolean constructFromAnother) {
+        return new TourDetailModel(entity, constructFromAnother);
     }
 }
