@@ -1,7 +1,6 @@
 package com.tour.entity;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -50,8 +49,19 @@ public class Customer {
             model.getAge(),
             model.getPhoneNumber(),
             new LoginDetail(-1, model.getUserId(), "", Permission.CUSTOMER),
-            new HashSet<>(),
-            new ArrayList<>()
+            model.getPaymentMethods(),
+            model.getTourDetails() == null ? new ArrayList<>() : model.getTourDetails().stream().map((e) -> new TourDetail(e)).toList()
         );
+    }
+
+    public Customer merge(Customer new_customer) {
+        this.fullname = new_customer.fullname;
+        this.age = new_customer.age;
+        this.phoneNumber = new_customer.phoneNumber;
+        this.paymentMethods.clear();
+        this.paymentMethods.addAll(new_customer.getPaymentMethods());
+        this.tourDetails.clear();
+        this.tourDetails.addAll(new_customer.getTourDetails());
+        return this;
     }
 }

@@ -37,7 +37,7 @@ public class AuthenticationServiceV1 implements AuthenticationService {
             Optional<Customer> customer = customerRepository.findById(session.get().getUserId());
             if(customer.isEmpty())
                 return LoginResponse.empty();
-            return new LoginResponse(request.getToken(), new CustomerModel(customer.get()), session.get().getPermission());
+            return new LoginResponse(request.getToken(), CustomerModel.fromEntity(customer.get()), session.get().getPermission());
         }
         Optional<Customer> customer = customerRepository.findByPhoneNumber(request.getPhoneNumber());
         if(customer.isEmpty())
@@ -45,7 +45,7 @@ public class AuthenticationServiceV1 implements AuthenticationService {
         LoginDetail _detail = customer.get().getLoginDetail();
         if(!passwordUtil.checkPassword(request.getPassword(), _detail.getPassword()))
             return LoginResponse.empty();
-        CustomerModel customerModel = new CustomerModel(customer.get());
+        CustomerModel customerModel = CustomerModel.fromEntity(customer.get());
         String token = passwordUtil.getToken(customer.get().getUserId() + customer.get().getFullname());
         LoginSession session = new LoginSession(-1, customer.get().getUserId(), token, _detail.getPermission());
         loginSessionRepository.save(session);
