@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/consts/text_style_log.dart';
 
-class Mainbutton extends StatelessWidget {
+class Mainbutton extends StatelessWidget {//1 kiểu button làm sẵn để tái sử dụng
   final Function() onTap;
   final String text;
   final String? image;

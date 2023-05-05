@@ -4,7 +4,7 @@ import 'package:saigontour/models/nearby_places_model.dart';
 import 'package:saigontour/page/tourist_details_page.dart';
 import 'package:saigontour/widget/distance.dart';
 
-class NearbyPlaces extends StatelessWidget {
+class NearbyPlaces extends StatelessWidget {//để show các địa điểm gần user
   const NearbyPlaces({Key? key}) : super(key: key);
 
   @override

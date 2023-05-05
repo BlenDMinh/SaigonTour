@@ -14,17 +14,13 @@ import 'package:saigontour/widget/text_fild.dart';
 
 import 'my_bottom_navigation_bar.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
+class LoginPage extends StatelessWidget {
   final AuthenticationService service = AuthenticationService();
+  // Tạo đối tượng service để xử lí
   TextEditingController phoneNum = TextEditingController();
+  //controller để quản lí số đt
   TextEditingController userPass = TextEditingController();
+//controller để quản lí password
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,17 +76,21 @@ class _LoginPageState extends State<LoginPage> {
                         service
                             .login(LoginRequest.ByPassword(
                                 phoneNum.text, userPass.text))
-                            .then((value) => {print(value)});
+                            .then((value) => {
+                                  print(value)
+                                }); // Gửi request để server check password
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomePage()));
+                                builder: (context) =>
+                                    HomePage())); //nút sign in để move tới trang home
                       },
                       text: 'Sign in',
                       btnColor: purpButton,
                     ),
                     SpaceVH(height: 20.0),
                     Mainbutton(
+                      // nút đăng kí bằng tài khoản google ( chưa làm)
                       onTap: () {},
                       text: 'Sign in with google',
                       image: 'google.png',
@@ -102,7 +102,9 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SignUpPage()),
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  SignUpPage()), // chữ Sign Up để move tới trang đăng kí
                         );
                       },
                       child: RichText(

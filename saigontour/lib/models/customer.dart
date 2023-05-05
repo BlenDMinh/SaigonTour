@@ -1,7 +1,7 @@
 import 'package:saigontour/models/payment_method.dart';
 import 'package:saigontour/models/tour_detail.dart';
 
-class Customer {
+class Customer { 
   int? userId;
   String fullname;
   int age;

@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/page/login_page.dart';
+import 'package:saigontour/page/ticket_page.dart';
 
 import 'home_page.dart';
 
@@ -17,13 +18,14 @@ class MyBottomNavigationBar extends StatefulWidget {
 }
 
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
+  // cái navigation dưới màn hình dùng để move giữa các trang
   int _selectedIndex = 0;
   final List<Widget> pages = [
     HomePage.instance,
+    TicketPage(), //để tạm login page vì chưa làm
+    TicketPage(),
     LoginPage(),
-    LoginPage(),
-    LoginPage(),
-  ];
+  ]; //có 4 trang và nhiều widget khác
 
   void _onItemTapped(int index) {
     setState(() {
@@ -35,7 +37,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: pages[_selectedIndex],
+        body: pages[_selectedIndex], // phần dưới chỉ là setup các trang để move
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: blackBG,
           selectedItemColor: purpButton,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/consts/text_style_log.dart';
 
-Widget textFild({
+Widget textFild({//một kiểu text để nhập form vào
   required String hintTxt,
   required TextEditingController controller,
   bool isObs = false,

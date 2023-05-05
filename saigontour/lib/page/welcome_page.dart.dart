@@ -3,7 +3,7 @@ import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/page/home_page.dart';
 import 'package:saigontour/page/my_bottom_navigation_bar.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatelessWidget { //trang welcome
   const WelcomePage({Key? key}) : super(key: key);
 
   @override
@@ -22,16 +22,16 @@ class WelcomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 const Text(
-                  "Explore your journey \nonly with us",
+                  "Khám phá những khu du lịch mới",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 26,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: whiteColor),
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  "All your vacations destinations are here,\nenjoy your holiday",
+                  "Địa điểm bạn muốn du lịch \n Tất cả có ở Sài Gòn Tour",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: white,
@@ -60,7 +60,7 @@ class WelcomePage extends StatelessWidget {
                           horizontal: 8.0,
                         ),
                       ),
-                      child: const Text("Get Started"),
+                      child: const Text("Bắt đầu"),
                     ),
                   ),
                 )

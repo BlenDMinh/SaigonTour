@@ -4,7 +4,7 @@ import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/models/recommended_places_model.dart';
 import 'package:saigontour/page/tourist_details_page.dart';
 
-class RecommendedPlaces extends StatelessWidget {
+class RecommendedPlaces extends StatelessWidget {//recommendation
   const RecommendedPlaces({Key? key}) : super(key: key);
 
   @override

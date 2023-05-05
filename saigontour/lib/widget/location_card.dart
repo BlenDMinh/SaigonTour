@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saigontour/consts/colors.dart';
 
-class LocationCard extends StatelessWidget {
+class LocationCard extends StatelessWidget { // dùng để lấy thông tin location của user
   const LocationCard({Key? key}) : super(key: key);
 
   @override

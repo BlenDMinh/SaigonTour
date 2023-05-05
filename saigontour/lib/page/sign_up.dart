@@ -16,6 +16,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  //Các controller để quản lí các text nhập vào
   TextEditingController userName = TextEditingController();
   TextEditingController userPass = TextEditingController();
   TextEditingController userEmail = TextEditingController();

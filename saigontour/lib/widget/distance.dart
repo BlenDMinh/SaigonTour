@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:saigontour/consts/colors.dart';
 
-class Distance extends StatelessWidget {
+class Distance extends StatelessWidget { // phần distance để tính khoảng cách giữa 2 location đi và đến
   const Distance({Key? key}) : super(key: key);
 
   @override

@@ -2,9 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:saigontour/consts/colors.dart';
+import 'package:saigontour/page/ticket_page.dart';
 import 'package:saigontour/widget/distance.dart';
 
-class TouristDetailsPage extends StatelessWidget {
+class TouristDetailsPage extends StatelessWidget { // trang này show ra info chi tiết của địa điểm user muốn xem
   const TouristDetailsPage({
     Key? key,
     required this.image,
@@ -158,7 +159,10 @@ class TouristDetailsPage extends StatelessWidget {
             const Distance(),
             const SizedBox(height: 40),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => TicketPage())); // nhấn join this tour để move tới trang ticket
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: purpButton,
                 elevation: 0,
@@ -168,7 +172,7 @@ class TouristDetailsPage extends StatelessWidget {
                   horizontal: 8.0,
                 ),
               ),
-              child: const Text("Join this tour"),
+              child: const Text("Join this tour"), 
             )
           ],
         ),

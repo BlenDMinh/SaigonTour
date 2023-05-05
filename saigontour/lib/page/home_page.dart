@@ -10,15 +10,15 @@ import 'package:saigontour/widget/recommended_places.dart';
 import 'package:saigontour/widget/tourist_places.dart';
 import 'my_bottom_navigation_bar.dart';
 
-class HomePage extends StatelessWidget {
-  static final HomePage instance = HomePage();
+class HomePage extends StatelessWidget { // page chính dùng để chọn địa điểm
+  static final HomePage instance = HomePage(); // tạo ra cái route để move tới page này
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( 
       backgroundColor: blackBG,
-      appBar: AppBar(
+      appBar: AppBar( // phần đầu của app(tên app, icon tìm kiếm ....)
         elevation: 0,
         backgroundColor: Colors.transparent,
         foregroundColor: littleWhite,
@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
           children: [
             const SizedBox(height: 10),
             const Text(
-              "Chào buổi sáng",
+              "Chào bạn",
               style: TextStyle(fontSize: 13),
             ),
             Text(
@@ -55,17 +55,18 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
+      body: ListView(// list này là toàn bộ phần dưới phần appbar
+        physics: const BouncingScrollPhysics(),// kéo xuống có hiệu hứng bouncing
         padding: const EdgeInsets.all(14),
         children: [
-          // LOCATION CARD
+          // LOCATION CARD để lấy địa chỉ hiện tại của user
           const LocationCard(),
           const SizedBox(
             height: 15,
           ),
+          //TouristPlaces nhấn vào để show ra các địa điểm du lịch theo sở thích(Núi, rừng, biển...) (Chưa làm)
           const TouristPlaces(),
-          // CATEGORIES
+          // CATEGORIES Recommendation
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,8 +85,10 @@ class HomePage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
+          //Widget này là thanh slide để recommend các nơi nên đến (nằm trong folder widget)
           const RecommendedPlaces(),
           const SizedBox(height: 10),
+          // Phần này để show các địa điểm du lịch gần với user dựa vào location đã lấy từ LOCATION CARD
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -103,6 +106,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
+          //nằm trong folder widget
           const NearbyPlaces(),
         ],
       ),
