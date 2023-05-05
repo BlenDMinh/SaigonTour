@@ -38,6 +38,7 @@ public class Tour {
     @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TourDetail> tourDetails;
 
+    // Ham khoi tao tu Model
     public Tour(TourModel model) {
         this(
             model.getTourId(),
@@ -51,6 +52,7 @@ public class Tour {
         );
     }
 
+    // Cap nhat du lieu cua Entity
     public Tour merge(Tour newTour) {
         this.name = newTour.name;
         this.description = newTour.description;

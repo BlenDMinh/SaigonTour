@@ -39,6 +39,7 @@ public class TourDetail {
     @Enumerated(EnumType.ORDINAL)
     private UserType userType;
 
+    // Ham khoi tao tu Model
     public TourDetail(TourDetailModel model) {
         this(
             model.getTourDetailId(),

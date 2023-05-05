@@ -1,6 +1,7 @@
 package com.tour.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,9 +40,11 @@ public class Customer {
     
     @Enumerated(EnumType.ORDINAL)
     private Set<PaymentMethod> paymentMethods;
+    
     @OneToMany(mappedBy = "tourUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TourDetail> tourDetails;
 
+    // Ham khoi tao tu Model
     public Customer(CustomerModel model) {
         this(
             model.getUserId() == null || model.getUserId() == -1 ? -1 : model.getUserId(),
@@ -54,13 +57,20 @@ public class Customer {
         );
     }
 
+    // Cap nhat du lieu cua Entity
     public Customer merge(Customer new_customer) {
         this.fullname = new_customer.fullname;
         this.age = new_customer.age;
         this.phoneNumber = new_customer.phoneNumber;
+        if(this.paymentMethods == null)
+            this.paymentMethods = new HashSet<>();
         this.paymentMethods.clear();
-        this.paymentMethods.addAll(new_customer.getPaymentMethods());
+        if(new_customer.getPaymentMethods() != null)
+            this.paymentMethods.addAll(new_customer.getPaymentMethods());
+        if(this.tourDetails == null) 
+            this.tourDetails = new ArrayList<>();
         this.tourDetails.clear();
+        if(new_customer.getTourDetails() != null)
         this.tourDetails.addAll(new_customer.getTourDetails());
         return this;
     }

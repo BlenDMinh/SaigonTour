@@ -23,6 +23,7 @@ public class LoginDetail {
     private Integer userId;
 
     private String password;
+    
     @Enumerated(EnumType.ORDINAL)
     private Permission permission;
 }
