@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/consts/text_style_log.dart';
 
-Widget textFild({//một kiểu text để nhập form vào
+Widget textFild({
+  //một kiểu text để nhập form vào
   required String hintTxt,
   required TextEditingController controller,
   bool isObs = false,
@@ -25,8 +26,9 @@ Widget textFild({//một kiểu text để nhập form vào
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          width: 270.0,
+          width: 220.0,
           child: TextField(
+            controller: controller,
             textAlignVertical: TextAlignVertical.center,
             obscureText: isObs,
             keyboardType: keyBordType,
