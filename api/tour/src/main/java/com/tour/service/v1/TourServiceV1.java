@@ -43,7 +43,7 @@ public class TourServiceV1 implements TourService {
     public TourModel save(TourModel model) {
         Optional<Tour> eTour = tourRepository.findById(model.getTourId());
         if(eTour.isEmpty()) {
-            Tour nTour = new Tour();
+            Tour nTour = new Tour(model);
             nTour = tourRepository.save(nTour);
             return TourModel.fromEntity(nTour);
         }

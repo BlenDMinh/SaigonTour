@@ -6,7 +6,8 @@ import 'package:saigontour/page/ticket_page.dart';
 import 'package:saigontour/page/welcome_page.dart.dart';
 
 void main() {
-  runApp(MyApp()); // hàm main để chạy page đầu tiên khi khởi động app(ở đây là welcome)
+  runApp(
+      MyApp()); // hàm main để chạy page đầu tiên khi khởi động app(ở đây là welcome)
 }
 
 class MyApp extends StatelessWidget {

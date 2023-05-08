@@ -6,7 +6,7 @@ class TourModel {
   int tourId;
   String name;
   String description;
-  Float price;
+  double price;
   DateTime startTime;
   List<String> tourPath;
   int maxCustomer;
@@ -27,15 +27,15 @@ class TourModel {
   factory TourModel.fromJsonWithTourDetailsAndTourPath(
       Map<String, dynamic> json,
       List<TourDetail> tourDetails,
-      List<String> tourPath) {
+      List<dynamic> tourPath) {
     return TourModel(
         json["tourId"],
         json["name"],
         json["description"],
         json["price"],
-        json["startTime"],
-        tourPath,
-        json["maxCustomer"],
+        DateTime.parse(json["startTime"]),
+        tourPath.map<String>((e) => e).toList(),
+        json["maxCustomerNumber"],
         tourDetails);
   }
 

@@ -34,7 +34,7 @@ public class TourModel {
             entity.getStartTime(),
             entity.getTourPath(), 
             entity.getMaxCustomerNumber(), 
-            lazy ? new ArrayList<>() :entity.getTourDetails().stream().map(e -> TourDetailModel.fromEntity(e, true)).toList()
+            lazy ? new ArrayList<>() : entity.getTourDetails() == null ? new ArrayList<>() : entity.getTourDetails().stream().map(e -> TourDetailModel.fromEntity(e, true)).toList()
         );
     }
 

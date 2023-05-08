@@ -8,14 +8,14 @@ import 'package:saigontour/consts/space.dart';
 import 'package:saigontour/consts/text_style_log.dart';
 import 'package:saigontour/page/sign_up.dart';
 import 'package:saigontour/page/welcome_page.dart.dart';
-import 'package:saigontour/service/authentication_service.dart';
+import 'package:saigontour/service/customer_service.dart';
 import 'package:saigontour/widget/main_button.dart';
 import 'package:saigontour/widget/text_fild.dart';
 
 import 'my_bottom_navigation_bar.dart';
 
 class LoginPage extends StatelessWidget {
-  final AuthenticationService service = AuthenticationService();
+  final CustomerService service = CustomerService();
   // Tạo đối tượng service để xử lí
   TextEditingController phoneNum = TextEditingController();
   //controller để quản lí số đt
@@ -74,11 +74,12 @@ class LoginPage extends StatelessWidget {
                     Mainbutton(
                       onTap: () {
                         service
-                            .login(LoginRequest.ByPassword(
-                                phoneNum.text, userPass.text))
-                            .then((value) => {
-                                  print(value)
-                                }); // Gửi request để server check password
+                            .login(
+                                request: LoginRequest.ByPassword(
+                                    phoneNum.value.text, userPass.value.text))
+                            .then((value) {
+                          print(service.loggedInCustomer);
+                        }); // Gửi request để server check password
                         Navigator.push(
                             context,
                             MaterialPageRoute(

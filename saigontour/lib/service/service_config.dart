@@ -1,3 +1,3 @@
 class ServiceConfig {
-  static const api_url = 'localhost:8080';
+  static const api_url = '192.168.1.8:8080';
 }

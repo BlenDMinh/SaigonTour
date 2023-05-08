@@ -17,7 +17,10 @@ class LoginRequest {
   }
 
   Map<String, dynamic> toJson() {
-    if (this.token != null) return {"token": this.token};
-    return {"phoneNumber": this.phoneNumber, "password": this.password};
+    return {
+      "token": this.token,
+      "phoneNumber": this.phoneNumber,
+      "password": this.password
+    };
   }
 }
