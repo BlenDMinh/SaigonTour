@@ -25,7 +25,13 @@ class CustomerService {
   final base_url = "api/authen";
 
   Future<LoginResponse> login({LoginRequest? request = null}) async {
-    if (request == null) {}
+    if (request == null) {
+      var token = await _tokenFile;
+      if(!token.existsSync())
+        return Future.error(Exception("Login token not exist"));
+      var tokenStr = token.readAsStringSync();
+      request = LoginRequest.ByToken(tokenStr);
+    }
     var url = base_url + "/login";
     var uri = Uri.http(ServiceConfig.api_url, url);
     print(jsonEncode(request!.toJson()));
@@ -38,7 +44,7 @@ class CustomerService {
             body: jsonEncode(request!.toJson()))
         .then((res) {
       if (res.statusCode != HttpStatus.ok)
-        return Future.error(Exception("Status: " + res.statusCode.toString()));
+        return Future.error(Exception("Status: " + res.statusCode.toString() + ". " + res.body));
       final loginResponse = LoginResponse.fromJson(jsonDecode(res.body));
       _tokenFile.then((file) {
         file.exists().then((e) {

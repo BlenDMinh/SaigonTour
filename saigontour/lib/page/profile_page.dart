@@ -1,0 +1,91 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:saigontour/consts/colors.dart';
+import 'package:saigontour/consts/text_style_log.dart';
+import 'package:saigontour/service/customer_service.dart';
+
+class InfoBox extends StatelessWidget {
+  IconData? icon;
+  String? info;
+  InfoBox({this.icon, this.info});
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 30.0),
+        margin: EdgeInsets.symmetric(
+          horizontal: 20.0,
+          vertical: 10.0,
+        ),
+        height: 70.0,
+        decoration: BoxDecoration(
+          color: blackTextFild,
+          borderRadius: BorderRadius.circular(20.0)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(icon, size: 20, color: grayText),
+            Text(info!, style: headline2)
+          ]
+        ),
+      )
+    );
+  }
+}
+
+class Avatar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(30.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100.0),
+        child: Image.network(
+          "https://storage.proboards.com/6857525/images/fxYZeoztSQXspEfehriC.jpg",
+          width: 170,
+          height: 170,
+        )
+      )
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  final customer = CustomerService.instance.loggedInCustomer!;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: blackBG,
+      body:  Padding(
+        padding: EdgeInsets.only(top: 50.0),
+        child: Column(
+          children: [
+            Avatar(),
+            Padding(
+              padding: EdgeInsets.only(bottom: 10.0),
+              child: Text(
+                customer.fullname, 
+                style: headline2.copyWith(fontSize: 20),
+              )
+            ),
+            Text(
+              "ID: " + customer.userId.toString(),
+              style: TextStyle(
+                color: grayText
+              ),
+            ),
+            InfoBox(
+              icon: CupertinoIcons.check_mark,
+              info: customer.age.toString(),
+            ),
+            InfoBox(
+              icon: CupertinoIcons.phone,
+              info: customer.phoneNumber,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
