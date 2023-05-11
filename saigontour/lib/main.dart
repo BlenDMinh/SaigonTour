@@ -12,7 +12,9 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   CustomerService.instance.login().timeout(Duration(seconds: 1), onTimeout: () async {
     return LoginResponse(null, null, null);
-  }).whenComplete(() { // Login bang token co san trong may neu co
+  })
+  .onError((error, stackTrace) => LoginResponse(null, null, null))
+  .whenComplete(() { // Login bang token co san trong may neu co
     runApp(MyApp()); // hàm main để chạy page đầu tiên khi khởi động app(ở đây là welcome)
   });
 }

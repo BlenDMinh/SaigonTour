@@ -21,7 +21,6 @@ class MNavigator {
     TicketPage(), //để tạm login page vì chưa làm
     TicketPage(),
     LoginPage(),
-    SignUpPage()
   ];
    //có 4 trang và nhiều widget khác
 

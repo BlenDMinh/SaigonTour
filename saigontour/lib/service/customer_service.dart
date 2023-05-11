@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
@@ -26,7 +27,8 @@ class CustomerService {
   final base_url = "api/authen";
 
   Future<LoginResponse> login({LoginRequest? request = null}) async {
-    if (request == null) {
+    try {
+      if (request == null) {
       var token = await _tokenFile;
       if(!token.existsSync())
         return Future.error(Exception("Login token not exist"));
@@ -64,6 +66,11 @@ class CustomerService {
         }, onError: (e) {
           e.printError();
         });
+    } catch(e) {
+      e.printError();
+    } finally {
+      return Future.error(e);
+    }
   }
 
   Customer? loggedInCustomer = null;
