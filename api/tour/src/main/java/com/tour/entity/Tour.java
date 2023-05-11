@@ -1,5 +1,6 @@
 package com.tour.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class Tour {
             model.getStartTime(),
             model.getTourPath(),
             model.getMaxCustomerNumber(),
-            model.getTourDetails().stream().map((e) -> new TourDetail(e)).toList()
+            model.getTourDetails() == null ? new ArrayList<>() : model.getTourDetails().stream().map((e) -> new TourDetail(e)).toList()
         );
     }
 

@@ -73,5 +73,21 @@ class CustomerService {
     }
   }
 
+  Future<void> update() {
+    var uri = Uri.http(base_url);
+    return http.put(uri, 
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body: jsonEncode(loggedInCustomer)
+    ).then((res) {
+      if (res.statusCode != HttpStatus.ok)
+        return Future.error(Exception("Status: " + res.statusCode.toString() + ". " + res.body));
+      Customer customer = Customer.fromJson(jsonDecode(res.body));
+      loggedInCustomer = customer;
+    });
+  }
+
   Customer? loggedInCustomer = null;
 }

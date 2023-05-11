@@ -25,7 +25,7 @@ public class TourModel {
     private Integer maxCustomerNumber;
     private List<TourDetailModel> tourDetails;
     
-    private TourModel(Tour entity, boolean lazy) {
+    private TourModel(Tour entity, int lazy) {
         this(
             entity.getTourId(), 
             entity.getName(), 
@@ -34,15 +34,15 @@ public class TourModel {
             entity.getStartTime(),
             entity.getTourPath(), 
             entity.getMaxCustomerNumber(), 
-            lazy ? new ArrayList<>() : entity.getTourDetails() == null ? new ArrayList<>() : entity.getTourDetails().stream().map(e -> TourDetailModel.fromEntity(e, true)).toList()
+            lazy > 1 ? new ArrayList<>() : entity.getTourDetails() == null ? new ArrayList<>() : entity.getTourDetails().stream().map(e -> TourDetailModel.fromEntity(e, lazy + 1)).toList()
         );
     }
 
     public static TourModel fromEntity(Tour entity) {
-        return new TourModel(entity, false);
+        return new TourModel(entity, 0);
     }
 
-    public static TourModel fromEntity(Tour entity, boolean constructFromTourDetail) {
-        return new TourModel(entity, constructFromTourDetail);
+    public static TourModel fromEntity(Tour entity, int lazy) {
+        return new TourModel(entity, 2);
     }
 }

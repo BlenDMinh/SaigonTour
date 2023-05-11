@@ -24,21 +24,21 @@ public class CustomerModel {
     private Set<PaymentMethod> paymentMethods;
     private List<TourDetailModel> tourDetails;
 
-    private CustomerModel(Customer entity, boolean lazy) {
+    private CustomerModel(Customer entity, int lazy) {
         this(entity.getUserId(), entity.getFullname(), entity.getAge(), entity.getPhoneNumber(), null, null);
         this.paymentMethods = entity.getPaymentMethods();
-        if(lazy)
+        if(lazy > 1)
             this.tourDetails = new ArrayList<>();
         else
             if(entity.getTourDetails() != null)
-                this.tourDetails = entity.getTourDetails().stream().map(e -> TourDetailModel.fromEntity(e, true)).toList();
+                this.tourDetails = entity.getTourDetails().stream().map(e -> TourDetailModel.fromEntity(e, lazy + 1)).toList();
     }
 
     public static CustomerModel fromEntity(Customer entity) {
-        return new CustomerModel(entity, false);
+        return new CustomerModel(entity, 0);
     }
 
-    public static CustomerModel fromEntity(Customer entity, boolean constructFromTourDetail) {
-        return new CustomerModel(entity, constructFromTourDetail);
+    public static CustomerModel fromEntity(Customer entity, int lazy) {
+        return new CustomerModel(entity, lazy);
     }
 }
