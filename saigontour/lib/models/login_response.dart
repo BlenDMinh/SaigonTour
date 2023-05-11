@@ -2,9 +2,9 @@ import 'package:saigontour/models/customer.dart';
 import 'package:saigontour/models/permission.dart';
 
 class LoginResponse {
-  String token;
-  Customer customer;
-  Permission permission;
+  String? token;
+  Customer? customer;
+  Permission? permission;
   LoginResponse(this.token, this.customer, this.permission);
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
@@ -14,7 +14,7 @@ class LoginResponse {
 
   Map<String, dynamic> toJson() => {
         "token": this.token,
-        "customer": this.customer.toJson(),
+        "customer": this.customer!.toJson(),
         "permission": this.permission
       };
   @override

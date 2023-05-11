@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:saigontour/models/customer.dart';
@@ -34,31 +35,35 @@ class CustomerService {
     }
     var url = base_url + "/login";
     var uri = Uri.http(ServiceConfig.api_url, url);
-    print(jsonEncode(request!.toJson()));
+    print(jsonEncode(request.toJson()));
     return http
         .post(uri,
             headers: {
               "Content-Type": "application/json",
               "Access-Control-Allow-Origin": "*"
             },
-            body: jsonEncode(request!.toJson()))
+            body: jsonEncode(request.toJson()))
         .then((res) {
-      if (res.statusCode != HttpStatus.ok)
-        return Future.error(Exception("Status: " + res.statusCode.toString() + ". " + res.body));
-      final loginResponse = LoginResponse.fromJson(jsonDecode(res.body));
-      _tokenFile.then((file) {
-        file.exists().then((e) {
-          if (!e)
-            file.create(recursive: true).then((value) {
-              value.writeAsString(loginResponse.token);
+          if (res.statusCode != HttpStatus.ok)
+            return Future.error(Exception("Status: " + res.statusCode.toString() + ". " + res.body));
+          final loginResponse = LoginResponse.fromJson(jsonDecode(res.body));
+          if(loginResponse.token == null)
+            return loginResponse;
+          _tokenFile.then((file) {
+            file.exists().then((e) {
+              if (!e)
+                file.create(recursive: true).then((value) {
+                  value.writeAsString(loginResponse.token!);
+                });
+              else
+                file.writeAsString(loginResponse.token!);
             });
-          else
-            file.writeAsString(loginResponse.token);
+          });
+          loggedInCustomer = loginResponse.customer;
+          return loginResponse;
+        }, onError: (e) {
+          e.printError();
         });
-      });
-      loggedInCustomer = loginResponse.customer;
-      return loginResponse;
-    });
   }
 
   Customer? loggedInCustomer = null;

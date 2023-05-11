@@ -80,14 +80,14 @@ class LoginPage extends StatelessWidget {
                             .login(
                                 request: LoginRequest.ByPassword(
                                     phoneNum.value.text, userPass.value.text))
+                            .timeout(Duration(seconds: 1), 
+                              onTimeout: () => LoginResponse(null, null, null)
+                            )
                             .then((value) {
                               print(service.loggedInCustomer);
+                              MNavigator.instance.navigate(0);
                             }); // Gửi request để server check password
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    HomePage())); //nút sign in để move tới trang home
+                            //nút sign in để move tới trang home
                       },
                       text: 'Sign in',
                       btnColor: purpButton,
