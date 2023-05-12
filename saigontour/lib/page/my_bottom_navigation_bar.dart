@@ -22,7 +22,7 @@ class MNavigator {
     TicketPage(),
     LoginPage(),
   ];
-   //có 4 trang và nhiều widget khác
+  //có 4 trang và nhiều widget khác
 
   MNavigator.__() {}
 
@@ -49,38 +49,39 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Obx(() => Scaffold(
-          body: MNavigator.instance.pages[MNavigator.instance.selectedIndex.value], // phần dưới chỉ là setup các trang để move
-          bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: blackBG,
-            selectedItemColor: purpButton,
-            unselectedItemColor: grayText,
-            type: BottomNavigationBarType.fixed,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Ionicons.home_outline),
-                label: "Home",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Ionicons.bookmark_outline),
-                label: "Bookmark",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Ionicons.ticket_outline),
-                label: "Ticket",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Ionicons.person_outline),
-                label: "Profile",
-              )
-            ],
-            currentIndex: MNavigator.instance.selectedIndex.value,
-            onTap: _onItemTapped,
-          ),
+        home: Obx(
+      () => Scaffold(
+        body: MNavigator.instance.pages[MNavigator.instance.selectedIndex
+            .value], // phần dưới chỉ là setup các trang để move
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: blackBG,
+          selectedItemColor: purpButton,
+          unselectedItemColor: grayText,
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Ionicons.home_outline),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Ionicons.bookmark_outline),
+              label: "Bookmark",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Ionicons.ticket_outline),
+              label: "Ticket",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Ionicons.person_outline),
+              label: "Profile",
+            )
+          ],
+          currentIndex: MNavigator.instance.selectedIndex.value,
+          onTap: _onItemTapped,
         ),
-      )
-    );
+      ),
+    ));
   }
 }

@@ -3,14 +3,12 @@ import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/models/payment_method.dart';
 import 'package:saigontour/widget/text_fild.dart';
 
-
 class PaymentPage extends StatefulWidget {
   const PaymentPage({Key? key}) : super(key: key);
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
 }
-
 
 class _PaymentPageState extends State<PaymentPage> {
   @override
@@ -22,7 +20,7 @@ class _PaymentPageState extends State<PaymentPage> {
     final tourDetailController = TextEditingController();
     final paymentController = TextEditingController();
     paymentController.text = "Momo";
-    
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(),
@@ -34,7 +32,6 @@ class _PaymentPageState extends State<PaymentPage> {
         ),
         body: Column(
           children: [
-            
             Expanded(
               child: ListView.builder(
                   itemCount: 3,
@@ -63,7 +60,6 @@ class _PaymentPageState extends State<PaymentPage> {
                     );
                   }),
             ),
-            
           ],
         ),
       ),

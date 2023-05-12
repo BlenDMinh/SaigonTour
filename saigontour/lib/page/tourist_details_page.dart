@@ -2,11 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:saigontour/consts/colors.dart';
+import 'package:saigontour/page/credit_card_payment.dart';
 import 'package:saigontour/page/my_bottom_navigation_bar.dart';
 import 'package:saigontour/page/ticket_page.dart';
 import 'package:saigontour/widget/distance.dart';
 
-class TouristDetailsPage extends StatelessWidget { // trang này show ra info chi tiết của địa điểm user muốn xem
+class TouristDetailsPage extends StatelessWidget {
+  // trang này show ra info chi tiết của địa điểm user muốn xem
   const TouristDetailsPage({
     Key? key,
     required this.image,
@@ -161,10 +163,13 @@ class TouristDetailsPage extends StatelessWidget { // trang này show ra info ch
             const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                MNavigator.instance.navigate(2);
-                Navigator.pop(context);
-                // Navigator.pushReplacement(context,
-                //     MaterialPageRoute(builder: (context) => TicketPage())); // nhấn join this tour để move tới trang ticket
+                //MNavigator.instance.navigate(2);
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CreditCardPayment()));
+                //Navigator.pop(context);
+// nhấn join this tour để move tới trang ticket
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: purpButton,
@@ -175,7 +180,7 @@ class TouristDetailsPage extends StatelessWidget { // trang này show ra info ch
                   horizontal: 8.0,
                 ),
               ),
-              child: const Text("Join this tour"), 
+              child: const Text("Join this tour"),
             )
           ],
         ),

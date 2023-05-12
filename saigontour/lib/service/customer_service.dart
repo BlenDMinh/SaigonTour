@@ -29,44 +29,44 @@ class CustomerService {
   Future<LoginResponse> login({LoginRequest? request = null}) async {
     try {
       if (request == null) {
-      var token = await _tokenFile;
-      if(!token.existsSync())
-        return Future.error(Exception("Login token not exist"));
-      var tokenStr = token.readAsStringSync();
-      request = LoginRequest.ByToken(tokenStr);
-    }
-    var url = base_url + "/login";
-    var uri = Uri.http(ServiceConfig.api_url, url);
-    print(jsonEncode(request.toJson()));
-    return http
-        .post(uri,
-            headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*"
-            },
-            body: jsonEncode(request.toJson()))
-        .then((res) {
-          if (res.statusCode != HttpStatus.ok)
-            return Future.error(Exception("Status: " + res.statusCode.toString() + ". " + res.body));
-          final loginResponse = LoginResponse.fromJson(jsonDecode(res.body));
-          if(loginResponse.token == null)
-            return loginResponse;
-          _tokenFile.then((file) {
-            file.exists().then((e) {
-              if (!e)
-                file.create(recursive: true).then((value) {
-                  value.writeAsString(loginResponse.token!);
-                });
-              else
-                file.writeAsString(loginResponse.token!);
-            });
+        var token = await _tokenFile;
+        if (!token.existsSync())
+          return Future.error(Exception("Login token not exist"));
+        var tokenStr = token.readAsStringSync();
+        request = LoginRequest.ByToken(tokenStr);
+      }
+      var url = base_url + "/login";
+      var uri = Uri.http(ServiceConfig.api_url, url);
+      print(jsonEncode(request.toJson()));
+      return http
+          .post(uri,
+              headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+              },
+              body: jsonEncode(request.toJson()))
+          .then((res) {
+        if (res.statusCode != HttpStatus.ok)
+          return Future.error(Exception(
+              "Status: " + res.statusCode.toString() + ". " + res.body));
+        final loginResponse = LoginResponse.fromJson(jsonDecode(res.body));
+        if (loginResponse.token == null) return loginResponse;
+        _tokenFile.then((file) {
+          file.exists().then((e) {
+            if (!e)
+              file.create(recursive: true).then((value) {
+                value.writeAsString(loginResponse.token!);
+              });
+            else
+              file.writeAsString(loginResponse.token!);
           });
-          loggedInCustomer = loginResponse.customer;
-          return loginResponse;
-        }, onError: (e) {
-          e.printError();
         });
-    } catch(e) {
+        loggedInCustomer = loginResponse.customer;
+        return loginResponse;
+      }, onError: (e) {
+        e.printError();
+      });
+    } catch (e) {
       e.printError();
     } finally {
       return Future.error(e);
@@ -75,15 +75,17 @@ class CustomerService {
 
   Future<void> update() {
     var uri = Uri.http(base_url);
-    return http.put(uri, 
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      },
-      body: jsonEncode(loggedInCustomer)
-    ).then((res) {
+    return http
+        .put(uri,
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*"
+            },
+            body: jsonEncode(loggedInCustomer))
+        .then((res) {
       if (res.statusCode != HttpStatus.ok)
-        return Future.error(Exception("Status: " + res.statusCode.toString() + ". " + res.body));
+        return Future.error(Exception(
+            "Status: " + res.statusCode.toString() + ". " + res.body));
       Customer customer = Customer.fromJson(jsonDecode(res.body));
       loggedInCustomer = customer;
     });

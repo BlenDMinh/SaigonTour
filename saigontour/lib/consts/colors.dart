@@ -13,6 +13,11 @@ const Color black = Color(0xFF000000);
 
 const Color blackBG = Color(0xFF181A20);
 const Color blackTextFild = Color(0xFF262A34);
+const Color cardBgColor = Color(0xff363636);
+const Color colorB58D67 = Color(0xffB58D67);
+const Color colorE5D1B2 = Color(0xffE5D1B2);
+const Color colorF9EED2 = Color(0xffF9EED2);
+const Color colorFFFFFD = Color(0xffFFFFFD);
 
 const List<Color> gradient = [
   Color.fromRGBO(24, 26, 32, 1),
