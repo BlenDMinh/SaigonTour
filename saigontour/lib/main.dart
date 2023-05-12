@@ -4,6 +4,7 @@ import 'package:saigontour/consts/style.dart';
 import 'package:saigontour/models/login_response.dart';
 import 'package:saigontour/page/home_page.dart';
 import 'package:saigontour/page/login_page.dart';
+import 'package:saigontour/page/payment_page.dart';
 import 'package:saigontour/page/ticket_page.dart';
 import 'package:saigontour/page/welcome_page.dart.dart';
 import 'package:saigontour/service/customer_service.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         title: 'Tour Booking',
         debugShowCheckedModeBanner: false,
         theme: Stlyes.themeData(),
-        home: WelcomePage(),
+        home: PaymentPage(),
       ),
     );
   }
