@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/consts/space.dart';
 import 'package:saigontour/consts/text_style_log.dart';
+import 'package:saigontour/page/profile_page.dart';
 import 'package:saigontour/page/sign_up.dart';
 import 'package:saigontour/page/welcome_page.dart.dart';
 import 'package:saigontour/service/customer_service.dart';
@@ -23,6 +24,8 @@ class LoginPage extends StatelessWidget {
 //controller để quản lí password
   @override
   Widget build(BuildContext context) {
+    if(CustomerService.instance.loggedInCustomer != null)
+      return ProfilePage();
     return Scaffold(
       backgroundColor: blackBG,
       body: Padding(
@@ -43,7 +46,7 @@ class LoginPage extends StatelessWidget {
               SpaceVH(height: 60.0),
               textFild(
                 controller: phoneNum,
-                image: CupertinoIcons.person,
+                image: CupertinoIcons.phone,
                 hintTxt: 'Phone Number',
               ),
               textFild(
@@ -77,14 +80,14 @@ class LoginPage extends StatelessWidget {
                             .login(
                                 request: LoginRequest.ByPassword(
                                     phoneNum.value.text, userPass.value.text))
+                            .timeout(Duration(seconds: 1), 
+                              onTimeout: () => LoginResponse(null, null, null)
+                            )
                             .then((value) {
-                          print(service.loggedInCustomer);
-                        }); // Gửi request để server check password
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    HomePage())); //nút sign in để move tới trang home
+                              print(service.loggedInCustomer);
+                              MNavigator.instance.navigate(0);
+                            }); // Gửi request để server check password
+                            //nút sign in để move tới trang home
                       },
                       text: 'Sign in',
                       btnColor: purpButton,
@@ -111,7 +114,7 @@ class LoginPage extends StatelessWidget {
                       child: RichText(
                         text: TextSpan(children: [
                           TextSpan(
-                            text: 'Don\' have an account? ',
+                            text: 'Don\'t have an account? ',
                             style: headline.copyWith(
                               fontSize: 14.0,
                             ),
