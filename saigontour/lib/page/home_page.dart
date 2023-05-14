@@ -3,22 +3,36 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:saigontour/consts/colors.dart';
+import 'package:saigontour/models/customer.dart';
+import 'package:saigontour/models/payment_method.dart';
+import 'package:saigontour/models/tour_detail.dart';
+import 'package:saigontour/models/user_type.dart';
 import 'package:saigontour/widget/custom_icon_button.dart';
 import 'package:saigontour/widget/location_card.dart';
 import 'package:saigontour/widget/nearby_places.dart';
 import 'package:saigontour/widget/recommended_places.dart';
 import 'package:saigontour/widget/tourist_places.dart';
+import '../models/tour_model.dart';
 import 'my_bottom_navigation_bar.dart';
 
-class HomePage extends StatelessWidget { // page chính dùng để chọn địa điểm
-  static final HomePage instance = HomePage(); // tạo ra cái route để move tới page này
+class HomePage extends StatefulWidget {
+  // page chính dùng để chọn địa điểm
+  static final HomePage instance =
+      HomePage(); // tạo ra cái route để move tới page này
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold(
       backgroundColor: blackBG,
-      appBar: AppBar( // phần đầu của app(tên app, icon tìm kiếm ....)
+      appBar: AppBar(
+        // phần đầu của app(tên app, icon tìm kiếm ....)
         elevation: 0,
         backgroundColor: Colors.transparent,
         foregroundColor: littleWhite,
@@ -37,26 +51,11 @@ class HomePage extends StatelessWidget { // page chính dùng để chọn đị
             ),
           ],
         ),
-        actions: [
-          CustomIconButton(
-            icon: Icon(
-              Ionicons.search,
-              color: white,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 8.0, right: 12),
-            child: CustomIconButton(
-              icon: Icon(
-                Ionicons.notifications,
-                color: white,
-              ),
-            ),
-          ),
-        ],
       ),
-      body: ListView(// list này là toàn bộ phần dưới phần appbar
-        physics: const BouncingScrollPhysics(),// kéo xuống có hiệu hứng bouncing
+      body: ListView(
+        // list này là toàn bộ phần dưới phần appbar
+        physics:
+            const BouncingScrollPhysics(), // kéo xuống có hiệu hứng bouncing
         padding: const EdgeInsets.all(14),
         children: [
           // LOCATION CARD để lấy địa chỉ hiện tại của user
@@ -65,7 +64,7 @@ class HomePage extends StatelessWidget { // page chính dùng để chọn đị
             height: 15,
           ),
           //TouristPlaces nhấn vào để show ra các địa điểm du lịch theo sở thích(Núi, rừng, biển...) (Chưa làm)
-          const TouristPlaces(),
+          //const TouristPlaces(),
           // CATEGORIES Recommendation
           const SizedBox(height: 10),
           Row(
@@ -76,12 +75,6 @@ class HomePage extends StatelessWidget { // page chính dùng để chọn đị
                 style: TextStyle(
                     color: white, fontSize: 22, fontWeight: FontWeight.bold),
               ),
-              TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Xem tất cả",
-                    style: TextStyle(color: Colors.deepPurpleAccent),
-                  ))
             ],
           ),
           const SizedBox(height: 10),
@@ -97,12 +90,6 @@ class HomePage extends StatelessWidget { // page chính dùng để chọn đị
                 style: TextStyle(
                     color: white, fontSize: 22, fontWeight: FontWeight.bold),
               ),
-              TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Xem tất cả",
-                    style: TextStyle(color: Colors.deepPurpleAccent),
-                  ))
             ],
           ),
           const SizedBox(height: 10),

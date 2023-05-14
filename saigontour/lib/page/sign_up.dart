@@ -60,6 +60,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 hintTxt: 'Email',
               ),
               textFild(
+              
                 controller: userPh,
                 image: CupertinoIcons.phone,
                 keyBordType: TextInputType.phone,

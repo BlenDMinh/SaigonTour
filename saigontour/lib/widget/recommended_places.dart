@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/models/recommended_places_model.dart';
+import 'package:saigontour/models/tour_model.dart';
 import 'package:saigontour/page/tourist_details_page.dart';
 
-class RecommendedPlaces extends StatelessWidget {//recommendation
+class RecommendedPlaces extends StatefulWidget {
+  //recommendation
   const RecommendedPlaces({Key? key}) : super(key: key);
 
   @override
+  State<RecommendedPlaces> createState() => _RecommendedPlacesState();
+}
+
+class _RecommendedPlacesState extends State<RecommendedPlaces> {
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 235,
+      height: 160,
       child: ListView.separated(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
@@ -28,7 +35,6 @@ class RecommendedPlaces extends StatelessWidget {//recommendation
                 child: InkWell(
                   borderRadius: BorderRadius.circular(12),
                   onTap: () {
-                    
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -47,27 +53,22 @@ class RecommendedPlaces extends StatelessWidget {//recommendation
                             recommendedPlaces[index].image,
                             width: double.maxFinite,
                             fit: BoxFit.cover,
-                            height: 150,
+                            height: 70,
                           ),
                         ),
                         const SizedBox(height: 5),
                         Row(
                           children: [
                             Text(
-                              "Vịnh Hạ Long",
+                              tourModelList[0].tourPath.first,
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                   color: littleWhite),
                             ),
                             const Spacer(),
-                            Icon(
-                              Icons.star,
-                              color: Colors.yellow.shade700,
-                              size: 14,
-                            ),
                             Text(
-                              "4.4",
+                              (tourModelList[0].price).toString(),
                               style:
                                   TextStyle(fontSize: 12, color: littleWhite),
                             )
@@ -83,7 +84,7 @@ class RecommendedPlaces extends StatelessWidget {//recommendation
                             ),
                             const SizedBox(width: 5),
                             Text(
-                              "Quảng Ninh",
+                              tourModelList[0].tourPath.last,
                               style:
                                   TextStyle(fontSize: 12, color: littleWhite),
                             )

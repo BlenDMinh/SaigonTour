@@ -1,6 +1,10 @@
 import 'dart:ffi';
 
+import 'package:saigontour/models/payment_method.dart';
 import 'package:saigontour/models/tour_detail.dart';
+import 'package:saigontour/models/user_type.dart';
+
+import 'customer.dart';
 
 class TourModel {
   int tourId;
@@ -52,3 +56,19 @@ class TourModel {
   @override
   String toString() => toJson().toString();
 }
+
+List<String> tourPath = ['TP Hồ Chí Minh', 'Đà Nẵng'];
+var a = TourDetail(
+    null,
+    Customer(1, 'charcuter', 10, '0123456789', {PaymentMethod.DEBIT_CARD}, []),
+    'Bus',
+    UserType.ADULT);
+
+List<TourModel> tourModelList = [
+  TourModel(1, 'Đà Nẵng', 'Summer time', 7000, DateTime.utc(2023, 7, 26, 9, 30, 10),
+      tourPath, 30, [a]),
+  TourModel(
+      2, 'Đà Lạt', 'Hot', 4000, DateTime.utc(2023, 18, 7), tourPath, 30, [a]),
+  TourModel(2, 'TP Hồ Chí Minh', 'Fun', 2000, DateTime.utc(2023, 1, 6),
+      tourPath, 30, [a])
+];

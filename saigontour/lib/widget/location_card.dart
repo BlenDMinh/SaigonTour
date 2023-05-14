@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:saigontour/consts/colors.dart';
 
-class LocationCard extends StatelessWidget { // dùng để lấy thông tin location của user
+class LocationCard extends StatelessWidget {
+  // dùng để lấy thông tin location của user
   const LocationCard({Key? key}) : super(key: key);
 
   @override
@@ -26,7 +27,7 @@ class LocationCard extends StatelessWidget { // dùng để lấy thông tin loc
                     style: TextStyle(fontSize: 20, color: purpButton)),
                 const SizedBox(height: 5),
                 Text(
-                  "TP Hồ Chí Minh, Việt Nam",
+                  "TP Đà Nẵng, Việt Nam",
                   style: TextStyle(fontSize: 14, color: littleWhite),
                 )
               ],

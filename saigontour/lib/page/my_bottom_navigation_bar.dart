@@ -18,7 +18,6 @@ class MNavigator {
 
   final List<Widget> pages = [
     HomePage(),
-    TicketPage(), //để tạm login page vì chưa làm
     TicketPage(),
     LoginPage(),
   ];
@@ -64,10 +63,6 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             BottomNavigationBarItem(
               icon: Icon(Ionicons.home_outline),
               label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Ionicons.bookmark_outline),
-              label: "Bookmark",
             ),
             BottomNavigationBarItem(
               icon: Icon(Ionicons.ticket_outline),

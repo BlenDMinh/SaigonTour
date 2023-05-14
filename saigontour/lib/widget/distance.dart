@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:saigontour/consts/colors.dart';
+import 'package:saigontour/models/tour_model.dart';
 
-class Distance extends StatelessWidget { // phần distance để tính khoảng cách giữa 2 location đi và đến
+class Distance extends StatelessWidget {
+  // phần distance để tính khoảng cách giữa 2 location đi và đến
   const Distance({Key? key}) : super(key: key);
 
   @override
@@ -14,8 +16,8 @@ class Distance extends StatelessWidget { // phần distance để tính khoảng
           color: purpButton,
           size: 14,
         ),
-        const Text(
-          "Vịnh Hạ Long",
+        Text(
+          tourModelList[0].tourPath.first,
           style: TextStyle(
             fontSize: 12,
             color: grayText,
@@ -41,7 +43,7 @@ class Distance extends StatelessWidget { // phần distance để tính khoảng
         ),
         const SizedBox(width: 2),
         Text(
-          "Quảng Ninh",
+          tourModelList[0].tourPath.last,
           style: TextStyle(
             fontSize: 12,
             color: purpButton,

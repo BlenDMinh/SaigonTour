@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:saigontour/consts/colors.dart';
@@ -6,16 +8,27 @@ import 'package:saigontour/page/credit_card_payment.dart';
 import 'package:saigontour/page/my_bottom_navigation_bar.dart';
 import 'package:saigontour/page/ticket_page.dart';
 import 'package:saigontour/widget/distance.dart';
+import 'package:saigontour/widget/text_fild.dart';
 
-class TouristDetailsPage extends StatelessWidget {
+import '../models/tour_model.dart';
+
+class TouristDetailsPage extends StatefulWidget {
   // trang này show ra info chi tiết của địa điểm user muốn xem
   const TouristDetailsPage({
     Key? key,
     required this.image,
   }) : super(key: key);
   final String image;
+
+  @override
+  State<TouristDetailsPage> createState() => _TouristDetailsPageState();
+}
+
+class _TouristDetailsPageState extends State<TouristDetailsPage> {
+  TextEditingController numOfPeople = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    if (numOfPeople.text == "") numOfPeople.text = "0";
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: blackBG,
@@ -34,7 +47,7 @@ class TouristDetailsPage extends StatelessWidget {
                       borderRadius: const BorderRadius.vertical(
                           bottom: Radius.circular(20)),
                       image: DecorationImage(
-                        image: AssetImage(image),
+                        image: AssetImage(widget.image),
                         fit: BoxFit.cover,
                       ),
                       boxShadow: [
@@ -85,7 +98,7 @@ class TouristDetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Thiên đường biển",
+                      tourModelList[0].name,
                       style: TextStyle(
                           color: white,
                           fontWeight: FontWeight.bold,
@@ -93,36 +106,23 @@ class TouristDetailsPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      "Team hướng dẫn 8km",
+                      tourModelList[0].description,
                       style: TextStyle(color: littleWhite),
                     )
                   ],
                 ),
                 const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(right: 4),
-                  child: IconButton(
-                    onPressed: () {},
-                    iconSize: 20,
-                    icon: const Icon(
-                      Ionicons.chatbubble_ellipses_outline,
-                      color: purpButton,
-                    ),
-                  ),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "4.6",
-                      style: TextStyle(color: littleWhite),
-                    ),
-                    Icon(
-                      Ionicons.star,
-                      color: Colors.yellow[800],
-                      size: 15,
-                    )
-                  ],
+                // money part
+                textFildNumOfPeople(
+                    hintTxt: 'Số người đi',
+                    controller: numOfPeople,
+                    keyBordType: TextInputType.number,
+                    image: Icons.people),
+                const Spacer(),
+
+                Text(
+                  "${(tourModelList[0].price * int.parse(numOfPeople.text)).toString()} VND",
+                  style: TextStyle(fontSize: 12, color: Colors.yellowAccent),
                 )
               ],
             ),
@@ -134,13 +134,18 @@ class TouristDetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("01d:32h:56m",
+                    Text("${tourModelList[0].startTime.day.toString()}/${tourModelList[0].startTime.month.toString()}/${tourModelList[0].startTime.year.toString()}",
                         style: TextStyle(fontSize: 20, color: whiteColor)),
-                    const SizedBox(height: 5),
+
+                    const SizedBox(height: 1),
                     Text(
                       "Bắt đầu vào",
                       style: TextStyle(color: littleWhite),
-                    )
+                    ),
+                    Text("${tourModelList[0].startTime.hour.toString()}:${tourModelList[0].startTime.minute.toString()}:${tourModelList[0].startTime.second.toString()}",
+                        style: TextStyle(fontSize: 20, color: whiteColor)),
+                    const SizedBox(height: 1),
+                    
                   ],
                 ),
               ],
