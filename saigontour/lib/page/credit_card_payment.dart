@@ -18,8 +18,8 @@ class CreditCardPaymentState extends State<CreditCardPayment> {
   String cardHolderName = '';
   String cvvCode = '';
   bool isCvvFocused = false;
-  bool useGlassMorphism = false;
-  bool useBackgroundImage = false;
+  bool useGlassMorphism = true;
+  bool useBackgroundImage = true;
   OutlineInputBorder? border;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -37,7 +37,6 @@ class CreditCardPaymentState extends State<CreditCardPayment> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Credit Card View Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -65,7 +64,7 @@ class CreditCardPaymentState extends State<CreditCardPayment> {
                   expiryDate: expiryDate,
                   cardHolderName: cardHolderName,
                   cvvCode: cvvCode,
-                  bankName: 'Axis Bank',
+                  bankName: 'MB Bank',
                   frontCardBorder:
                       !useGlassMorphism ? Border.all(color: Colors.grey) : null,
                   backCardBorder:
@@ -91,6 +90,7 @@ class CreditCardPaymentState extends State<CreditCardPayment> {
                     ),
                   ],
                 ),
+                SizedBox(height: 40),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -137,65 +137,15 @@ class CreditCardPaymentState extends State<CreditCardPayment> {
                             labelStyle: const TextStyle(color: Colors.white),
                             focusedBorder: border,
                             enabledBorder: border,
-                            labelText: 'Card Holder',
+                            labelText: 'ID',
                           ),
                           onCreditCardModelChange: onCreditCardModelChange,
                         ),
                         const SizedBox(
                           height: 20,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              const Text(
-                                'Glassmorphism',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              const Spacer(),
-                              Switch(
-                                value: useGlassMorphism,
-                                inactiveTrackColor: Colors.grey,
-                                activeColor: Colors.white,
-                                activeTrackColor: colorE5D1B2,
-                                onChanged: (bool value) => setState(() {
-                                  useGlassMorphism = value;
-                                }),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              const Text(
-                                'Card Image',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              const Spacer(),
-                              Switch(
-                                value: useBackgroundImage,
-                                inactiveTrackColor: Colors.grey,
-                                activeColor: Colors.white,
-                                activeTrackColor: colorE5D1B2,
-                                onChanged: (bool value) => setState(() {
-                                  useBackgroundImage = value;
-                                }),
-                              ),
-                            ],
-                          ),
-                        ),
                         const SizedBox(
-                          height: 20,
+                          height: 100,
                         ),
                         GestureDetector(
                           onTap: _onValidate,
