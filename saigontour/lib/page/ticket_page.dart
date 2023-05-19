@@ -7,11 +7,21 @@ import 'package:saigontour/consts/colors.dart';
 import '../widget/ticket_data.dart';
 import '../widget/ticket_detail_widget.dart';
 
-class TicketPage extends StatelessWidget {
+class TicketPage extends StatefulWidget {
   //trang này để show ra những vé mà user đã đặt thành công
   const TicketPage({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<TicketPage> createState() => _TicketPageState();
+}
+
+class _TicketPageState extends State<TicketPage> {
+
+  
+
+
   @override
   Widget build(BuildContext context) {
     final service = CustomerService();
@@ -42,7 +52,7 @@ class TicketPage extends StatelessWidget {
                       padding: EdgeInsets.all(17),
                       margin: EdgeInsets.all(5.0),
                       color: white,
-                      child: TicketData(tourDetail: tourDetails[index])),
+                      child: TicketData(tourDetails[index])),
                 );
               })),
     );

@@ -28,6 +28,10 @@ class MNavigator {
   navigate(int id) {
     selectedIndex.value = id;
   }
+
+  reload() {
+    selectedIndex.refresh();
+  }
 }
 
 class MyBottomNavigationBar extends StatefulWidget {

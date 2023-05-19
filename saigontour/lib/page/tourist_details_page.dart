@@ -18,7 +18,7 @@ import '../models/tour_model.dart';
 
 class TouristDetailsPage extends StatefulWidget {
   // trang này show ra info chi tiết của địa điểm user muốn xem
-  TourModel tour;
+  final TourModel tour;
   TouristDetailsPage({
     Key? key,
     required this.tour,
@@ -32,10 +32,72 @@ class TouristDetailsPage extends StatefulWidget {
 }
 
 class _TouristDetailsPageState extends State<TouristDetailsPage> {
+  final service = CustomerService();
   TourModel tour;
   _TouristDetailsPageState(this.tour);
   TextEditingController numOfAdult = TextEditingController();
   TextEditingController numOfChildren = TextEditingController();
+
+  static Route<Object?> _dialogNobodyBuilder(
+      BuildContext context, Object? arguments) {
+    return DialogRoute<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('0 ticket'),
+          content: const Text("Congratulation, its free now!"),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static Route<Object?> _dialogLogInBuilder(
+      BuildContext context, Object? arguments) {
+    return DialogRoute<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Admin said: '),
+          content: const Text(
+              "You're a fucking stupid cow, didn't know how to log in"),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Log in'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                MNavigator.instance.navigate(2);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (numOfAdult.text == "") numOfAdult.text = "0";
@@ -203,36 +265,47 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
             ElevatedButton(
               onPressed: () {
                 //MNavigator.instance.navigate(2);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CreditCardPayment(
-                              tourDetails: () {
-                                final service = CustomerService();
-                                var tourDetails = <TourDetail>[];
-                                for (int i = 0;
-                                    i < int.parse(numOfAdult.text);
-                                    i++) {
-                                  TourDetail tourDetail = TourDetail(
-                                      this.tour,
-                                      service.loggedInCustomer!,
-                                      "Máy bay",
-                                      UserType.ADULT);
-                                  tourDetails.add(tourDetail);
-                                }
-                                for (int i = 0;
-                                    i < int.parse(numOfChildren.text);
-                                    i++) {
-                                  TourDetail tourDetail = TourDetail(
-                                      this.tour,
-                                      service.loggedInCustomer!,
-                                      "Máy bay",
-                                      UserType.KID);
-                                  tourDetails.add(tourDetail);
-                                }
-                                return tourDetails;
-                              }.call(),
-                            )));
+
+                if (service.loggedInCustomer == null) {
+                  Navigator.of(context).restorablePush(_dialogLogInBuilder);
+                }
+                if ((int.parse(numOfAdult.text) +
+                        int.parse(numOfChildren.text)) <
+                    1) {
+                  Navigator.of(context).restorablePush(_dialogNobodyBuilder);
+                } else {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CreditCardPayment(
+                                tourDetails: () {
+                                  final service = CustomerService();
+                                  var tourDetails = <TourDetail>[];
+                                  for (int i = 0;
+                                      i < int.parse(numOfAdult.text);
+                                      i++) {
+                                    TourDetail tourDetail = TourDetail(
+                                        this.tour,
+                                        service.loggedInCustomer!,
+                                        "Máy bay",
+                                        UserType.ADULT);
+                                    tourDetails.add(tourDetail);
+                                  }
+                                  for (int i = 0;
+                                      i < int.parse(numOfChildren.text);
+                                      i++) {
+                                    TourDetail tourDetail = TourDetail(
+                                        this.tour,
+                                        service.loggedInCustomer!,
+                                        "Máy bay",
+                                        UserType.KID);
+                                    tourDetails.add(tourDetail);
+                                  }
+                                  return tourDetails;
+                                }.call(),
+                              )));
+                }
+
                 //Navigator.pop(context);
 // nhấn join this tour để move tới trang ticket
               },
