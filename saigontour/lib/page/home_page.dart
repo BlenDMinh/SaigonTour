@@ -11,7 +11,6 @@ import 'package:saigontour/service/tour_service.dart';
 import 'package:saigontour/widget/custom_icon_button.dart';
 import 'package:saigontour/widget/home_page_tour.dart';
 import 'package:saigontour/widget/location_card.dart';
-import 'package:saigontour/widget/nearby_places.dart';
 import 'package:saigontour/widget/recommended_places.dart';
 import 'package:saigontour/widget/tourist_places.dart';
 import '../models/tour_model.dart';
