@@ -25,10 +25,12 @@ class TouristDetailsPage extends StatefulWidget {
 }
 
 class _TouristDetailsPageState extends State<TouristDetailsPage> {
-  TextEditingController numOfPeople = TextEditingController();
+  TextEditingController numOfAdult = TextEditingController();
+  TextEditingController numOfChildren = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    if (numOfPeople.text == "") numOfPeople.text = "0";
+    if (numOfAdult.text == "") numOfAdult.text = "0";
+    if (numOfChildren.text == "") numOfChildren.text = "0";
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: blackBG,
@@ -113,17 +115,34 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                 ),
                 const Spacer(),
                 // money part
-                textFildNumOfPeople(
-                    hintTxt: 'Số người đi',
-                    controller: numOfPeople,
-                    keyBordType: TextInputType.number,
-                    image: Icons.people),
-                const Spacer(),
-
-                Text(
-                  "${(tourModelList[0].price! * int.parse(numOfPeople.text)).toString()} VND",
-                  style: TextStyle(fontSize: 12, color: Colors.yellowAccent),
-                )
+                Column(
+                  children: [
+                    Text('Vé người lớn',
+                        style: TextStyle(fontSize: 12, color: littleWhite)),
+                    textFildNumOfPeople(
+                        hintTxt: 'Số người đi',
+                        controller: numOfAdult,
+                        keyBordType: TextInputType.number,
+                        image: Icons.people),
+                  ],
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  children: [
+                    Text('Vé trẻ em (giảm 50%)',
+                        style: TextStyle(fontSize: 12, color: littleWhite)),
+                    textFildNumOfPeople(
+                        hintTxt: 'Số người đi',
+                        controller: numOfChildren,
+                        keyBordType: TextInputType.number,
+                        image: Icons.people),
+                  ],
+                ),
+                SizedBox(
+                  width: 10,
+                ),
               ],
             ),
             const SizedBox(height: 15),
@@ -148,6 +167,10 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                     const SizedBox(height: 1),
                   ],
                 ),
+                Text(
+                  "${(tourModelList[0].price! * (double.parse(numOfAdult.text) + double.parse(numOfChildren.text) / 2)).toString()} VND",
+                  style: TextStyle(fontSize: 16, color: Colors.yellowAccent),
+                )
               ],
             ),
             const SizedBox(height: 10),

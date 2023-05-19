@@ -12,7 +12,7 @@ Widget textFildNumOfPeople({
   required IconData image,
 }) {
   return Container(
-    height: 40,
+    height: 30,
     padding: EdgeInsets.only(left: 8, top: 3, bottom: 3, right: 8),
     decoration: BoxDecoration(
       color: blackTextFild,
@@ -22,7 +22,7 @@ Widget textFildNumOfPeople({
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          width: 100,
+          width: 50,
           child: TextField(
             controller: controller,
             textAlignVertical: TextAlignVertical.center,
@@ -31,7 +31,11 @@ Widget textFildNumOfPeople({
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: hintTxt,
-              hintStyle: hintStyle,
+              hintStyle: TextStyle(
+                fontSize: 12,
+                color: grayText,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             style: headline2,
           ),
