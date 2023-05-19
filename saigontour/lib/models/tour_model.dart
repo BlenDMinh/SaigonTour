@@ -70,7 +70,7 @@ var a = TourDetail(
     UserType.ADULT);
 
 List<TourModel> tourModelList = [
-  TourModel(1, 'Đà Nẵng', 'Summer time', 7000, DateTime.utc(2023, 7, 26, 9, 30, 10),
+  TourModel(1, 'Đà Nẵng', 'Summer time', 7000000, DateTime.utc(2023, 7, 26, 9, 30, 10),
       tourPath, 30, [a]),
   TourModel(
       2, 'Đà Lạt', 'Hot', 4000, DateTime.utc(2023, 18, 7), tourPath, 30, [a]),

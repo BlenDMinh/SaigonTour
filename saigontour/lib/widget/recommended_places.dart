@@ -40,6 +40,7 @@ class _RecommendedPlacesState extends State<RecommendedPlaces> {
                         MaterialPageRoute(
                           builder: (context) => TouristDetailsPage(
                             image: recommendedPlaces[index].image,
+                            tour
                           ),
                         ));
                   },

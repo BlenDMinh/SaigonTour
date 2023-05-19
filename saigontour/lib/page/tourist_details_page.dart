@@ -2,6 +2,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/page/credit_card_payment.dart';
@@ -14,17 +15,22 @@ import '../models/tour_model.dart';
 
 class TouristDetailsPage extends StatefulWidget {
   // trang này show ra info chi tiết của địa điểm user muốn xem
-  const TouristDetailsPage({
+  TourModel tour;
+  TouristDetailsPage({
     Key? key,
+    required this.tour,
     required this.image,
   }) : super(key: key);
   final String image;
 
   @override
-  State<TouristDetailsPage> createState() => _TouristDetailsPageState();
+  State<TouristDetailsPage> createState() =>
+      _TouristDetailsPageState(this.tour);
 }
 
 class _TouristDetailsPageState extends State<TouristDetailsPage> {
+  TourModel tour;
+  _TouristDetailsPageState(this.tour);
   TextEditingController numOfAdult = TextEditingController();
   TextEditingController numOfChildren = TextEditingController();
   @override
@@ -100,7 +106,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      tourModelList[0].name!,
+                      this.tour.name!,
                       style: TextStyle(
                           color: white,
                           fontWeight: FontWeight.bold,
@@ -108,7 +114,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      tourModelList[0].description!,
+                      this.tour.description!,
                       style: TextStyle(color: littleWhite),
                     )
                   ],
@@ -154,7 +160,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                        "${tourModelList[0].startTime!.day.toString()}/${tourModelList[0].startTime!.month.toString()}/${tourModelList[0].startTime!.year.toString()}",
+                        "${this.tour.startTime!.day.toString()}/${this.tour.startTime!.month.toString()}/${this.tour.startTime!.year.toString()}",
                         style: TextStyle(fontSize: 20, color: whiteColor)),
                     const SizedBox(height: 1),
                     Text(
@@ -162,13 +168,13 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                       style: TextStyle(color: littleWhite),
                     ),
                     Text(
-                        "${tourModelList[0].startTime!.hour.toString()}:${tourModelList[0].startTime!.minute.toString()}:${tourModelList[0].startTime!.second.toString()}",
+                        "${this.tour.startTime!.hour.toString()}:${this.tour.startTime!.minute.toString()}:${this.tour.startTime!.second.toString()}",
                         style: TextStyle(fontSize: 20, color: whiteColor)),
                     const SizedBox(height: 1),
                   ],
                 ),
                 Text(
-                  "${(tourModelList[0].price! * (double.parse(numOfAdult.text) + double.parse(numOfChildren.text) / 2)).toString()} VND",
+                  "${NumberFormat.currency(locale: 'eu', symbol: "VND", decimalDigits: 0).format(this.tour.price! * (double.parse(numOfAdult.text) + double.parse(numOfChildren.text) / 2))}",
                   style: TextStyle(fontSize: 16, color: Colors.yellowAccent),
                 )
               ],
