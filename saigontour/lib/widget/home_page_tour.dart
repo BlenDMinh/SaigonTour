@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:saigontour/models/tour_model.dart';
 
 import '../consts/colors.dart';
@@ -26,6 +27,7 @@ Widget HomeTourCart(BuildContext context, TourModel tour) {
                 MaterialPageRoute(
                   builder: (context) => TouristDetailsPage(
                     image: nearbyPlaces[0].image,
+                    tour: tour,
                   ),
                 ));
           },
@@ -76,7 +78,11 @@ Widget HomeTourCart(BuildContext context, TourModel tour) {
                                   fontSize: 15,
                                   color: purpButton,
                                 ),
-                                text: tour.price.toString(),
+                                text: NumberFormat.currency(
+                                        locale: "eu",
+                                        symbol: "VND",
+                                        decimalDigits: 0)
+                                    .format(tour.price?.toInt()),
                                 children: const [
                                   TextSpan(
                                       style: TextStyle(

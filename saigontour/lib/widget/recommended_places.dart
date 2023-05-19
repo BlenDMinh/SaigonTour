@@ -39,9 +39,8 @@ class _RecommendedPlacesState extends State<RecommendedPlaces> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => TouristDetailsPage(
-                            image: recommendedPlaces[index].image,
-                            tour
-                          ),
+                              image: recommendedPlaces[index].image,
+                              tour: tourModelList[0]),
                         ));
                   },
                   child: Padding(

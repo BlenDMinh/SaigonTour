@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/models/nearby_places_model.dart';
+import 'package:saigontour/models/tour_model.dart';
 import 'package:saigontour/page/tourist_details_page.dart';
 import 'package:saigontour/widget/distance.dart';
 
@@ -30,6 +31,7 @@ class NearbyPlaces extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => TouristDetailsPage(
+                          tour: tourModelList[0],
                           image: nearbyPlaces[index].image,
                         ),
                       ));
