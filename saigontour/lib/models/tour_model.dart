@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ffi';
 
+import 'package:intl/intl.dart';
 import 'package:saigontour/models/payment_method.dart';
 import 'package:saigontour/models/tour_detail.dart';
 import 'package:saigontour/models/user_type.dart';
@@ -51,8 +52,8 @@ class TourModel {
         "name": name,
         "description": description,
         "price": price,
-        "startTime": startTime.toString(),
-        "tourPath": tourPath.toString(),
+        "startTime": DateFormat("yyyy-MM-dd").format(startTime!),
+        "tourPath": tourPath,
         "maxCustomer": maxCustomer,
         "tourDetails": depth > 1
             ? []

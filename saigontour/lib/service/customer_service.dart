@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
-import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:saigontour/models/customer.dart';
@@ -11,6 +9,7 @@ import 'package:saigontour/models/login_response.dart';
 import 'package:saigontour/models/register_info.dart';
 import 'package:saigontour/service/service_config.dart';
 import 'package:http/http.dart' as http;
+import 'dart:developer';
 
 class CustomerService {
   static CustomerService _instance = CustomerService.__();
@@ -105,7 +104,8 @@ class CustomerService {
 
   Future<void> update() {
     var uri = Uri.http(ServiceConfig.api_url, "/api/customer");
-    print(jsonEncode(loggedInCustomer?.toJson()));
+    log(jsonEncode(loggedInCustomer?.toJson()));
+    // print();
     return http
         .put(uri,
             headers: {
