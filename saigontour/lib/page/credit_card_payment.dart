@@ -90,7 +90,7 @@ class CreditCardPaymentState extends State<CreditCardPayment> {
                     ),
                   ],
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: 20),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -140,9 +140,6 @@ class CreditCardPaymentState extends State<CreditCardPayment> {
                             labelText: 'ID',
                           ),
                           onCreditCardModelChange: onCreditCardModelChange,
-                        ),
-                        const SizedBox(
-                          height: 20,
                         ),
                         const SizedBox(
                           height: 100,
