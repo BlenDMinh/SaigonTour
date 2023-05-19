@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saigontour/models/payment_method.dart';
+import 'package:intl/intl.dart';
 import 'package:saigontour/models/tour_detail.dart';
 import 'package:saigontour/models/user_type.dart';
 import 'package:saigontour/widget/ticket_detail_widget.dart';
@@ -69,8 +69,10 @@ Widget TicketData({required TourDetail tourDetail}) {
                 'Passengers',
                 tourDetail.tourCustomer?.fullname ?? "Monsieur Charcuter",
                 'Date',
-                tourDetail.tourModel?.startTime.toString() ??
-                    "2023/07/26 15:00"),
+                tourDetail.tourModel != null
+                    ? DateFormat("dd-MM-yyyy hh:mm")
+                        .format(tourDetail.tourModel!.startTime!)
+                    : "2023/07/26 15:00"),
             Padding(
               padding: const EdgeInsets.only(top: 12.0, right: 31.0),
               child: ticketDetailsWidget(
@@ -110,14 +112,3 @@ Widget TicketData({required TourDetail tourDetail}) {
     ],
   );
 }
-
-List<Widget> ticketDataList = [
-  TicketData(
-      tourDetail: new TourDetail(null, null, "43B 273 73", UserType.ADULT)),
-  TicketData(
-      tourDetail: new TourDetail(null, null, "43B 273 73", UserType.KID)),
-  TicketData(
-      tourDetail: new TourDetail(null, null, "43B 273 73", UserType.KID)),
-  TicketData(
-      tourDetail: new TourDetail(null, null, "43B 273 73", UserType.ADULT)),
-];

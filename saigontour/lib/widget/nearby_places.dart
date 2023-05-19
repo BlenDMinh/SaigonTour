@@ -68,7 +68,9 @@ class NearbyPlaces extends StatelessWidget {
                             ),
                             const SizedBox(height: 10),
                             // DISTANCE WIDGET
-                            const Distance(),
+                            Distance(
+                              paths: tourModelList[0].tourPath,
+                            ),
                             const Spacer(),
                             Row(
                               children: [

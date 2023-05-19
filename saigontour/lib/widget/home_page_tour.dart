@@ -7,7 +7,8 @@ import '../models/nearby_places_model.dart';
 import '../page/tourist_details_page.dart';
 import 'distance.dart';
 
-Widget HomeTourCart(BuildContext context, TourModel tour) {
+Widget HomeTourCard(BuildContext context, TourModel tour) {
+  print(tour);
   return Padding(
     padding: const EdgeInsets.only(bottom: 10),
     child: SizedBox(
@@ -62,7 +63,9 @@ Widget HomeTourCart(BuildContext context, TourModel tour) {
                       ),
                       const SizedBox(height: 10),
                       // DISTANCE WIDGET
-                      const Distance(),
+                      Distance(
+                        paths: tour.tourPath,
+                      ),
                       const Spacer(),
                       Row(
                         children: [

@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: List.generate(
                       snapshot.data == null ? 0 : snapshot.data!.length,
-                      (index) => HomeTourCart(context, snapshot.data![index])),
+                      (index) => HomeTourCard(context, snapshot.data![index])),
                 )
                 //nằm trong folder widget
                 // const NearbyPlaces(),

@@ -42,7 +42,7 @@ class Customer {
         "age": age,
         "phoneNumber": phoneNumber,
         "paymentMethods": paymentMethods.map((e) => e.toString()).toList(),
-        "tourDetails": depth > 1
+        "tourDetails": depth > 2
             ? []
             : tourDetails.map((e) => e.toJson(depth: depth + 1)).toList()
       };
