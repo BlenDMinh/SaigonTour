@@ -1,11 +1,13 @@
+import 'dart:convert';
+
 import 'package:saigontour/models/payment_method.dart';
 import 'package:saigontour/models/tour_detail.dart';
 
-class Customer { 
+class Customer {
   int? userId;
-  String fullname;
-  int age;
-  String phoneNumber;
+  String? fullname;
+  int? age;
+  String? phoneNumber;
   Set<PaymentMethod> paymentMethods;
   List<TourDetail> tourDetails;
 
@@ -14,9 +16,11 @@ class Customer {
   factory Customer.fromJson(Map<String, dynamic> json) {
     return Customer.fromJsonWithTourDetail(
         json,
-        json["tourDetails"]
-            .map<TourDetail>((j) => TourDetail.fromJson(j))
-            .toList());
+        json["tourDetails"] == null
+            ? []
+            : List.of(json["tourDetails"])
+                .map((j) => TourDetail.fromJson(j))
+                .toList());
   }
   factory Customer.fromJsonWithTourDetail(
       Map<String, dynamic> json, List<TourDetail> tourDetails) {
@@ -25,18 +29,22 @@ class Customer {
         json["fullname"],
         json["age"],
         json["phoneNumber"],
-        json["paymentMethods"]
-            .map<PaymentMethod>((e) => PaymentMethod.values[e])
-            .toSet(),
+        json["paymentMethods"] == null
+            ? new Set()
+            : json["paymentMethods"]
+                .map<PaymentMethod>((e) => PaymentMethod.values.byName(e))
+                .toSet(),
         tourDetails);
   }
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson({int depth = 0}) => {
         "userId": userId,
         "fullname": fullname,
         "age": age,
         "phoneNumber": phoneNumber,
-        "paymentMethods": paymentMethods,
-        "tourDetails": tourDetails
+        "paymentMethods": paymentMethods.map((e) => e.toString()).toList(),
+        "tourDetails": depth > 1
+            ? []
+            : tourDetails.map((e) => e.toJson(depth: depth + 1)).toList()
       };
   @override
   String toString() => toJson().toString();

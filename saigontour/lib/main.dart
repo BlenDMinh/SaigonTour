@@ -11,24 +11,19 @@ import 'package:saigontour/page/welcome_page.dart.dart';
 import 'package:saigontour/service/customer_service.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  //try {
-  //  CustomerService.instance.login().onError((error, stackTrace) {
-  //    error.printError();
-  //    stackTrace.printError();
-  //    return LoginResponse(null, null, null);
-  //  });
-  //} catch (e) {
-  //  e.printError();
-  //}
-  //CustomerService.instance.login().timeout(Duration(seconds: 1), onTimeout: () async {
-  //  return LoginResponse(null, null, null);
-  //})
-  //.onError((error, stackTrace) => LoginResponse(null, null, null))
-  //.whenComplete(() { // Login bang token co san trong may neu co
-  runApp(
-      MyApp()); // hàm main để chạy page đầu tiên khi khởi động app(ở đây là welcome)
-  //});
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    CustomerService().login().whenComplete(() {
+      print("Login as: " + CustomerService().loggedInCustomer.toString());
+      // Login bang token co san trong may neu co
+      runApp(
+          MyApp()); // hàm main để chạy page đầu tiên khi khởi động app(ở đây là welcome)
+    }).timeout(Duration(seconds: 1), onTimeout: () {
+      return LoginResponse(null, null, null);
+    }).onError((error, stackTrace) => LoginResponse(null, null, null));
+  } catch (e) {
+    e.printError();
+  }
 }
 
 class MyApp extends StatelessWidget {

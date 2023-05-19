@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:saigontour/models/payment_method.dart';
@@ -7,13 +8,13 @@ import 'package:saigontour/models/user_type.dart';
 import 'customer.dart';
 
 class TourModel {
-  int tourId;
-  String name;
-  String description;
-  double price;
-  DateTime startTime;
+  int? tourId;
+  String? name;
+  String? description;
+  double? price;
+  DateTime? startTime;
   List<String> tourPath;
-  int maxCustomer;
+  int? maxCustomer;
   List<TourDetail> tourDetails;
 
   TourModel(this.tourId, this.name, this.description, this.price,
@@ -22,10 +23,12 @@ class TourModel {
   factory TourModel.fromJson(Map<String, dynamic> json) {
     return TourModel.fromJsonWithTourDetailsAndTourPath(
         json,
-        json["tourDetails"]
-            .map<TourDetail>((j) => TourDetail.fromJson(j))
-            .toList(),
-        json["tourPath"]);
+        json["tourDetails"] == null
+            ? []
+            : json["tourDetails"]
+                .map<TourDetail>((j) => TourDetail.fromJson(j))
+                .toList(),
+        json["tourPath"] == null ? [] : json["tourPath"]);
   }
 
   factory TourModel.fromJsonWithTourDetailsAndTourPath(
@@ -37,13 +40,13 @@ class TourModel {
         json["name"],
         json["description"],
         json["price"],
-        DateTime.parse(json["startTime"]),
+        json["startTime"] == null ? null : DateTime.parse(json["startTime"]),
         tourPath.map<String>((e) => e).toList(),
         json["maxCustomerNumber"],
         tourDetails);
   }
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson({int depth = 0}) => {
         "tourId": tourId,
         "name": name,
         "description": description,
@@ -51,7 +54,9 @@ class TourModel {
         "startTime": startTime,
         "tourPath": tourPath,
         "maxCustomer": maxCustomer,
-        "tourDetails": tourDetails
+        "tourDetails": depth > 1
+            ? []
+            : tourDetails.map((e) => e.toJson(depth: depth + 1)).toList()
       };
   @override
   String toString() => toJson().toString();

@@ -98,7 +98,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      tourModelList[0].name,
+                      tourModelList[0].name!,
                       style: TextStyle(
                           color: white,
                           fontWeight: FontWeight.bold,
@@ -106,7 +106,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      tourModelList[0].description,
+                      tourModelList[0].description!,
                       style: TextStyle(color: littleWhite),
                     )
                   ],
@@ -121,7 +121,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                 const Spacer(),
 
                 Text(
-                  "${(tourModelList[0].price * int.parse(numOfPeople.text)).toString()} VND",
+                  "${(tourModelList[0].price! * int.parse(numOfPeople.text)).toString()} VND",
                   style: TextStyle(fontSize: 12, color: Colors.yellowAccent),
                 )
               ],
@@ -134,18 +134,18 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("${tourModelList[0].startTime.day.toString()}/${tourModelList[0].startTime.month.toString()}/${tourModelList[0].startTime.year.toString()}",
+                    Text(
+                        "${tourModelList[0].startTime!.day.toString()}/${tourModelList[0].startTime!.month.toString()}/${tourModelList[0].startTime!.year.toString()}",
                         style: TextStyle(fontSize: 20, color: whiteColor)),
-
                     const SizedBox(height: 1),
                     Text(
                       "Bắt đầu vào",
                       style: TextStyle(color: littleWhite),
                     ),
-                    Text("${tourModelList[0].startTime.hour.toString()}:${tourModelList[0].startTime.minute.toString()}:${tourModelList[0].startTime.second.toString()}",
+                    Text(
+                        "${tourModelList[0].startTime!.hour.toString()}:${tourModelList[0].startTime!.minute.toString()}:${tourModelList[0].startTime!.second.toString()}",
                         style: TextStyle(fontSize: 20, color: whiteColor)),
                     const SizedBox(height: 1),
-                    
                   ],
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:saigontour/models/login_request.dart';
 import 'package:saigontour/models/login_response.dart';
 import 'package:saigontour/page/home_page.dart';
@@ -24,8 +25,8 @@ class LoginPage extends StatelessWidget {
 //controller để quản lí password
   @override
   Widget build(BuildContext context) {
-    if(CustomerService.instance.loggedInCustomer != null)
-      return ProfilePage();
+    print(service.loggedInCustomer);
+    if (service.loggedInCustomer != null) return ProfilePage();
     return Scaffold(
       backgroundColor: blackBG,
       body: Padding(
@@ -80,14 +81,15 @@ class LoginPage extends StatelessWidget {
                             .login(
                                 request: LoginRequest.ByPassword(
                                     phoneNum.value.text, userPass.value.text))
-                            .timeout(Duration(seconds: 1), 
-                              onTimeout: () => LoginResponse(null, null, null)
-                            )
                             .then((value) {
-                              print(service.loggedInCustomer);
-                              MNavigator.instance.navigate(0);
-                            }); // Gửi request để server check password
-                            //nút sign in để move tới trang home
+                          print(service.loggedInCustomer);
+                          MNavigator.instance.navigate(0);
+                        }).onError((error, stackTrace) {
+                          error.printError();
+                          stackTrace.printError();
+                        }); // Gửi request để server check password
+                        // .timeout(Duration(seconds: 1), onTimeout: () {});
+                        //nút sign in để move tới trang home
                       },
                       text: 'Sign in',
                       btnColor: purpButton,

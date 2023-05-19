@@ -9,8 +9,9 @@ class TourService {
   Future<List<TourModel>> getAll() async {
     var uri = Uri.http(ServiceConfig.api_url, base_url);
     return http.get(uri, headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+      "Accept": "application/json; charset=utf-8"
     }).then((res) {
       var jsonObject = jsonDecode(res.body);
       var tours = <TourModel>[];
@@ -25,8 +26,9 @@ class TourService {
     var url = base_url + "/" + id.toString();
     var uri = Uri.http(ServiceConfig.api_url, url);
     return http.get(uri, headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+      "Accept": "application/json; charset=utf-8"
     }).then((res) => TourModel.fromJson(jsonDecode(res.body)));
   }
 }

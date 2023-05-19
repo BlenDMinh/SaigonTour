@@ -1,9 +1,15 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:saigontour/consts/colors.dart';
 import 'package:saigontour/consts/space.dart';
 import 'package:saigontour/consts/text_style_log.dart';
+import 'package:saigontour/models/customer.dart';
+import 'package:saigontour/models/register_info.dart';
+import 'package:saigontour/service/customer_service.dart';
 
 import 'package:saigontour/widget/main_button.dart';
 import 'package:saigontour/widget/text_fild.dart';
@@ -18,9 +24,13 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   //Các controller để quản lí các text nhập vào
   TextEditingController userName = TextEditingController();
+  TextEditingController age = TextEditingController();
   TextEditingController userPass = TextEditingController();
   TextEditingController userEmail = TextEditingController();
   TextEditingController userPh = TextEditingController();
+
+  var service = CustomerService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +64,12 @@ class _SignUpPageState extends State<SignUpPage> {
                 hintTxt: 'Full Name',
               ),
               textFild(
+                controller: age,
+                image: CupertinoIcons.person,
+                keyBordType: TextInputType.name,
+                hintTxt: 'Age',
+              ),
+              textFild(
                 controller: userEmail,
                 keyBordType: TextInputType.emailAddress,
                 image: CupertinoIcons.person,
@@ -74,7 +90,18 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               SpaceVH(height: 80.0),
               Mainbutton(
-                onTap: () {},
+                onTap: () {
+                  Customer customer = Customer(-1, userName.text,
+                      int.parse(age.text), userPh.text, new Set(), []);
+                  RegisterInfo registerInfo =
+                      RegisterInfo(customer, userPass.text);
+                  service.register(registerInfo).then((value) {
+                    print("Registerd");
+                    Navigator.pop(context);
+                  }).onError((error, stackTrace) {
+                    error.printError();
+                  });
+                },
                 text: 'Đăng ký',
                 btnColor: purpButton,
               ),

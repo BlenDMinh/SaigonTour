@@ -4,7 +4,8 @@ import 'package:saigontour/models/tour_detail.dart';
 import 'package:saigontour/models/user_type.dart';
 import 'package:saigontour/widget/ticket_detail_widget.dart';
 
-Widget TicketData({required TourDetail tourDetail}) { //phần data của từng ticket
+Widget TicketData({required TourDetail tourDetail}) {
+  //phần data của từng ticket
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
