@@ -1,4 +1,6 @@
+import 'package:saigontour/models/tour_detail.dart';
 import 'package:saigontour/page/my_bottom_navigation_bar.dart';
+import 'package:saigontour/service/customer_service.dart';
 
 import '../consts/colors.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,10 @@ import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
 class CreditCardPayment extends StatefulWidget {
+  List<TourDetail> tourDetails;
+
+  CreditCardPayment({Key? key, required this.tourDetails}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return CreditCardPaymentState();
@@ -194,11 +200,15 @@ class CreditCardPaymentState extends State<CreditCardPayment> {
   void _onValidate() {
     if (formKey.currentState!.validate()) {
       print('valid!');
+      final service = CustomerService();
+      service.loggedInCustomer?.tourDetails.addAll(this.widget.tourDetails);
+      service.update().then((value) {
+        MNavigator.instance.navigate(1);
+        Navigator.pop(context);
+      });
     } else {
       print('invalid!');
     }
-    MNavigator.instance.navigate(2);
-    Navigator.pop(context);
   }
 
   void onCreditCardModelChange(CreditCardModel? creditCardModel) {

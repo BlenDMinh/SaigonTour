@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:saigontour/consts/colors.dart';
+import 'package:saigontour/models/tour_detail.dart';
+import 'package:saigontour/models/user_type.dart';
 import 'package:saigontour/page/credit_card_payment.dart';
 import 'package:saigontour/page/my_bottom_navigation_bar.dart';
 import 'package:saigontour/page/ticket_page.dart';
+import 'package:saigontour/service/customer_service.dart';
 import 'package:saigontour/widget/distance.dart';
 import 'package:saigontour/widget/text_fild.dart';
 
@@ -203,7 +206,33 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => CreditCardPayment()));
+                        builder: (context) => CreditCardPayment(
+                              tourDetails: () {
+                                final service = CustomerService();
+                                var tourDetails = <TourDetail>[];
+                                for (int i = 0;
+                                    i < int.parse(numOfAdult.text);
+                                    i++) {
+                                  TourDetail tourDetail = TourDetail(
+                                      this.tour,
+                                      service.loggedInCustomer!,
+                                      "Máy bay",
+                                      UserType.ADULT);
+                                  tourDetails.add(tourDetail);
+                                }
+                                for (int i = 0;
+                                    i < int.parse(numOfChildren.text);
+                                    i++) {
+                                  TourDetail tourDetail = TourDetail(
+                                      this.tour,
+                                      service.loggedInCustomer!,
+                                      "Máy bay",
+                                      UserType.KID);
+                                  tourDetails.add(tourDetail);
+                                }
+                                return tourDetails;
+                              }.call(),
+                            )));
                 //Navigator.pop(context);
 // nhấn join this tour để move tới trang ticket
               },

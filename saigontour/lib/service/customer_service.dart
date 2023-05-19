@@ -104,7 +104,8 @@ class CustomerService {
   }
 
   Future<void> update() {
-    var uri = Uri.http(base_url);
+    var uri = Uri.http(ServiceConfig.api_url, "/api/customer");
+    print(jsonEncode(loggedInCustomer?.toJson()));
     return http
         .put(uri,
             headers: {
@@ -112,7 +113,7 @@ class CustomerService {
               "Access-Control-Allow-Origin": "*",
               "Accept": "application/json; charset=utf-8"
             },
-            body: jsonEncode(loggedInCustomer))
+            body: jsonEncode(loggedInCustomer?.toJson()))
         .then((res) {
       if (res.statusCode != HttpStatus.ok)
         return Future.error(Exception(

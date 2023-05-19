@@ -23,7 +23,7 @@ class TourDetail {
       "tour": depth > 2 ? null : tourModel?.toJson(depth: depth + 1),
       "tourUser": depth > 2 ? null : tourCustomer?.toJson(depth: depth + 1),
       "vehicle": vehicle,
-      "userType": userType
+      "userType": userType.name
     };
   }
 }

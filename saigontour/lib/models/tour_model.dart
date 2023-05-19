@@ -51,10 +51,10 @@ class TourModel {
         "name": name,
         "description": description,
         "price": price,
-        "startTime": startTime,
-        "tourPath": tourPath,
+        "startTime": startTime.toString(),
+        "tourPath": tourPath.toString(),
         "maxCustomer": maxCustomer,
-        "tourDetails": depth > 2
+        "tourDetails": depth > 1
             ? []
             : tourDetails.map((e) => e.toJson(depth: depth + 1)).toList()
       };
