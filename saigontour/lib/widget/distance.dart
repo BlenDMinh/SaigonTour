@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:saigontour/consts/colors.dart';
-import 'package:saigontour/models/tour_model.dart';
 
 class Distance extends StatelessWidget {
   // phần distance để tính khoảng cách giữa 2 location đi và đến
-  const Distance({Key? key}) : super(key: key);
+  final List<String> paths;
+  const Distance({Key? key, required this.paths}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class Distance extends StatelessWidget {
           size: 14,
         ),
         Text(
-          tourModelList[0].tourPath.first,
+          paths.first,
           style: TextStyle(
             fontSize: 12,
             color: grayText,
@@ -43,7 +43,7 @@ class Distance extends StatelessWidget {
         ),
         const SizedBox(width: 2),
         Text(
-          tourModelList[0].tourPath.last,
+          paths.last,
           style: TextStyle(
             fontSize: 12,
             color: purpButton,

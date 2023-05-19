@@ -11,8 +11,11 @@ class TourDetail {
   TourDetail(this.tourModel, this.tourCustomer, this.vehicle, this.userType);
 
   factory TourDetail.fromJson(Map<String, dynamic> json) {
-    return TourDetail(TourModel.fromJson(json), Customer.fromJson(json),
-        json["vehicle"], UserType.values.byName(json["userType"]));
+    return TourDetail(
+        TourModel.fromJson(json["tour"]),
+        Customer.fromJson(json["tourUser"]),
+        json["vehicle"],
+        UserType.values.byName(json["userType"]));
   }
 
   Map<String, dynamic> toJson({int depth = 0}) {

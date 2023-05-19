@@ -193,7 +193,9 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
               ),
             ),
             const SizedBox(height: 15),
-            const Distance(),
+            Distance(
+              paths: this.tour.tourPath,
+            ),
             const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {

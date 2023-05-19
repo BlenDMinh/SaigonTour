@@ -54,7 +54,7 @@ class TourModel {
         "startTime": startTime,
         "tourPath": tourPath,
         "maxCustomer": maxCustomer,
-        "tourDetails": depth > 1
+        "tourDetails": depth > 2
             ? []
             : tourDetails.map((e) => e.toJson(depth: depth + 1)).toList()
       };
@@ -70,8 +70,8 @@ var a = TourDetail(
     UserType.ADULT);
 
 List<TourModel> tourModelList = [
-  TourModel(1, 'Đà Nẵng', 'Summer time', 7000000, DateTime.utc(2023, 7, 26, 9, 30, 10),
-      tourPath, 30, [a]),
+  TourModel(1, 'Đà Nẵng', 'Summer time', 7000000,
+      DateTime.utc(2023, 7, 26, 9, 30, 10), tourPath, 30, [a]),
   TourModel(
       2, 'Đà Lạt', 'Hot', 4000, DateTime.utc(2023, 18, 7), tourPath, 30, [a]),
   TourModel(2, 'TP Hồ Chí Minh', 'Fun', 2000, DateTime.utc(2023, 1, 6),
