@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:ffi';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -241,7 +242,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                   ],
                 ),
                 Text(
-                  "${NumberFormat.currency(locale: 'eu', symbol: "VND", decimalDigits: 0).format(this.tour.price! * (double.parse(numOfAdult.text) + double.parse(numOfChildren.text) / 2))}",
+                  "${NumberFormat.currency(locale: 'eu', symbol: "VND", decimalDigits: 0).format(max(0, this.tour.price! * (double.parse(numOfAdult.text) + double.parse(numOfChildren.text) / 2)))}",
                   style: TextStyle(fontSize: 15, color: Colors.yellowAccent),
                 )
               ],

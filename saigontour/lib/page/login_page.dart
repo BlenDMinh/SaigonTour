@@ -56,21 +56,7 @@ class LoginPage extends StatelessWidget {
                 isObs: true,
                 hintTxt: 'Password',
               ),
-              SpaceVH(height: 10.0),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.only(right: 20.0),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Forgot Password?',
-                      style: headline3,
-                    ),
-                  ),
-                ),
-              ),
-              SpaceVH(height: 100.0),
+              SpaceVH(height: 200.0),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Column(
@@ -94,15 +80,7 @@ class LoginPage extends StatelessWidget {
                       text: 'Sign in',
                       btnColor: purpButton,
                     ),
-                    SpaceVH(height: 20.0),
-                    Mainbutton(
-                      // nút đăng kí bằng tài khoản google ( chưa làm)
-                      onTap: () {},
-                      text: 'Sign in with google',
-                      image: 'google.png',
-                      btnColor: white,
-                      txtColor: blackBG,
-                    ),
+                    SpaceVH(height: 40.0),
                     SpaceVH(height: 20.0),
                     TextButton(
                       onPressed: () {

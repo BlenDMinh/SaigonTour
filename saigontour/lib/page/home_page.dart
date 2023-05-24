@@ -7,6 +7,7 @@ import 'package:saigontour/models/customer.dart';
 import 'package:saigontour/models/payment_method.dart';
 import 'package:saigontour/models/tour_detail.dart';
 import 'package:saigontour/models/user_type.dart';
+import 'package:saigontour/service/customer_service.dart';
 import 'package:saigontour/service/tour_service.dart';
 import 'package:saigontour/widget/custom_icon_button.dart';
 import 'package:saigontour/widget/home_tour_card.dart';
@@ -30,6 +31,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final customerService = CustomerService();
     var service = TourService();
     return FutureBuilder<List<TourModel>>(
         future: service.getAll(),
@@ -51,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 13),
                   ),
                   Text(
-                    "Saigontour",
+                    customerService.loggedInCustomer?.fullname ?? "",
                     style: TextStyle(
                         color: whiteColor,
                         fontSize: 25,
