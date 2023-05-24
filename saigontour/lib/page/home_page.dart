@@ -9,7 +9,7 @@ import 'package:saigontour/models/tour_detail.dart';
 import 'package:saigontour/models/user_type.dart';
 import 'package:saigontour/service/tour_service.dart';
 import 'package:saigontour/widget/custom_icon_button.dart';
-import 'package:saigontour/widget/home_page_tour.dart';
+import 'package:saigontour/widget/home_tour_card.dart';
 import 'package:saigontour/widget/location_card.dart';
 import 'package:saigontour/widget/recommended_places.dart';
 import 'package:saigontour/widget/tourist_places.dart';
@@ -89,7 +89,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(height: 10),
                 //Widget này là thanh slide để recommend các nơi nên đến (nằm trong folder widget)
-                const RecommendedPlaces(),
+                RecommendedPlaces(
+                    tour: snapshot.data == null
+                        ? []
+                        : snapshot.data!
+                            .sublist(0, min(snapshot.data!.length, 5))),
                 const SizedBox(height: 10),
                 // Phần này để show các địa điểm du lịch gần với user dựa vào location đã lấy từ LOCATION CARD
                 Row(

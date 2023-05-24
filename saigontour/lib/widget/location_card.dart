@@ -27,7 +27,7 @@ class LocationCard extends StatelessWidget {
                     style: TextStyle(fontSize: 20, color: purpButton)),
                 const SizedBox(height: 5),
                 Text(
-                  "TP Đà Nẵng, Việt Nam",
+                  "TP Hồ Chí Minh, Việt Nam",
                   style: TextStyle(fontSize: 14, color: littleWhite),
                 )
               ],

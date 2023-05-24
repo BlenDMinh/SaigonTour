@@ -7,11 +7,17 @@ import 'package:saigontour/page/my_bottom_navigation_bar.dart';
 import 'package:saigontour/service/customer_service.dart';
 import 'package:saigontour/widget/ticket_detail_widget.dart';
 
-class TicketData extends StatelessWidget {
+class TicketData extends StatefulWidget {
   final TourDetail tourDetail;
+  Function? callback = null;
 
-  TicketData(this.tourDetail);
+  TicketData({required this.tourDetail, this.callback});
 
+  @override
+  State<TicketData> createState() => _TicketDataState();
+}
+
+class _TicketDataState extends State<TicketData> {
   Route<Object?> _dialogDoubleCheckBuilder(BuildContext context) {
     return DialogRoute<void>(
       context: context,
@@ -36,10 +42,11 @@ class TicketData extends StatelessWidget {
               child: const Text('Delete'),
               onPressed: () {
                 final service = CustomerService();
-                service.loggedInCustomer?.tourDetails.remove(tourDetail);
+                service.loggedInCustomer?.tourDetails.remove(widget.tourDetail);
                 service.update().then((value) {
                   Navigator.of(context).pop();
-                  MNavigator.instance.reload();
+                  setState(() {});
+                  this.widget.callback?.call();
                 });
               },
             ),
@@ -66,7 +73,7 @@ class TicketData extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  tourDetail.vehicle,
+                  widget.tourDetail.vehicle,
                   style: TextStyle(color: Colors.green),
                 ),
               ),
@@ -74,9 +81,11 @@ class TicketData extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  tourDetail.tourModel?.tourPath[0] ?? "Đà Nẵng",
+                  widget.tourDetail.tourModel?.tourPath[0] ?? "Đà Nẵng",
                   style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                      fontSize: 12,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 3.0),
@@ -88,9 +97,11 @@ class TicketData extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 3.0),
                   child: Text(
-                    tourDetail.tourModel?.tourPath[1] ?? "Nha Trang",
+                    widget.tourDetail.tourModel?.tourPath[1] ?? "Nha Trang",
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
+                        fontSize: 12,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
                   ),
                 )
               ],
@@ -102,15 +113,16 @@ class TicketData extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 20.0, left: 20),
               child: Text(
-                tourDetail.tourModel!.name.toString(),
+                widget.tourDetail.tourModel!.name.toString(),
                 style: TextStyle(
                     color: Colors.black,
-                    fontSize: 20.0,
+                    fontSize: 14.0,
                     fontWeight: FontWeight.bold),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             Padding(
-                padding: EdgeInsets.only(top: 20.0, right: 20, left: 170),
+                padding: EdgeInsets.only(top: 20.0, right: 20, left: 50),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
@@ -149,35 +161,35 @@ class TicketData extends StatelessWidget {
                     children: [
                       Text(
                         'Passenger',
-                        style: TextStyle(color: Colors.black38, fontSize: 14),
+                        style: TextStyle(color: Colors.black38, fontSize: 12),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                          tourDetail.tourCustomer?.fullname ??
+                          widget.tourDetail.tourCustomer?.fullname ??
                               "Monsieur Charcuter",
-                          style: TextStyle(color: Colors.black, fontSize: 14)),
+                          style: TextStyle(color: Colors.black, fontSize: 12)),
                       SizedBox(
                         height: 5,
                       ),
                       Text('Tour',
                           style:
-                              TextStyle(color: Colors.black38, fontSize: 14)),
+                              TextStyle(color: Colors.black38, fontSize: 12)),
                       Text(
-                          tourDetail.tourModel?.tourId.toString() ??
+                          widget.tourDetail.tourModel?.tourId.toString() ??
                               "7687334A45",
-                          style: TextStyle(color: Colors.black, fontSize: 14)),
+                          style: TextStyle(color: Colors.black, fontSize: 12)),
                       SizedBox(
                         height: 5,
                       ),
                       Text('Type',
                           style:
-                              TextStyle(color: Colors.black38, fontSize: 14)),
+                              TextStyle(color: Colors.black38, fontSize: 12)),
                       Text(
-                          tourDetail.userType == UserType.ADULT
+                          widget.tourDetail.userType == UserType.ADULT
                               ? "Adult"
                               : "Child",
-                          style: TextStyle(color: Colors.black, fontSize: 14)),
+                          style: TextStyle(color: Colors.black, fontSize: 12)),
                     ],
                   ),
                   SizedBox(
@@ -189,35 +201,35 @@ class TicketData extends StatelessWidget {
                     children: [
                       Text('Date',
                           style:
-                              TextStyle(color: Colors.black38, fontSize: 14)),
+                              TextStyle(color: Colors.black38, fontSize: 12)),
                       Text(
-                          tourDetail.tourModel != null
-                              ? DateFormat("dd-MM-yyyy hh:mm")
-                                  .format(tourDetail.tourModel!.startTime!)
+                          widget.tourDetail.tourModel != null
+                              ? DateFormat("dd-MM-yyyy hh:mm").format(
+                                  widget.tourDetail.tourModel!.startTime!)
                               : "2023/07/26 15:00",
-                          style: TextStyle(color: Colors.black, fontSize: 14)),
+                          style: TextStyle(color: Colors.black, fontSize: 12)),
                       SizedBox(
                         height: 5,
                       ),
                       Text('Price',
                           style:
-                              TextStyle(color: Colors.black38, fontSize: 14)),
+                              TextStyle(color: Colors.black38, fontSize: 12)),
                       Text(
                           NumberFormat.currency(
                                       locale: 'eu',
                                       symbol: "VND",
                                       decimalDigits: 0)
-                                  .format(tourDetail.tourModel?.price) ??
+                                  .format(widget.tourDetail.tourModel?.price) ??
                               "500.000 VND",
-                          style: TextStyle(color: Colors.black, fontSize: 14)),
+                          style: TextStyle(color: Colors.black, fontSize: 12)),
                       SizedBox(
                         height: 5,
                       ),
                       Text('Payment',
                           style:
-                              TextStyle(color: Colors.black38, fontSize: 14)),
+                              TextStyle(color: Colors.black38, fontSize: 12)),
                       Text("Credit card",
-                          style: TextStyle(color: Colors.black, fontSize: 14)),
+                          style: TextStyle(color: Colors.black, fontSize: 12)),
                     ],
                   )
                 ],

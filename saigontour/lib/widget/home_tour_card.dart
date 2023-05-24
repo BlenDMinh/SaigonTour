@@ -53,13 +53,13 @@ Widget HomeTourCard(BuildContext context, TourModel tour) {
                       Text(
                         tour.name!,
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: littleWhite),
                       ),
                       Text(
                         tour.description!,
-                        style: TextStyle(fontSize: 16, color: littleWhite),
+                        style: TextStyle(fontSize: 12, color: littleWhite),
                       ),
                       const SizedBox(height: 10),
                       // DISTANCE WIDGET
@@ -78,8 +78,8 @@ Widget HomeTourCard(BuildContext context, TourModel tour) {
                           RichText(
                             text: TextSpan(
                                 style: TextStyle(
-                                  fontSize: 15,
-                                  color: purpButton,
+                                  fontSize: 12,
+                                  color: white,
                                 ),
                                 text: NumberFormat.currency(
                                         locale: "eu",

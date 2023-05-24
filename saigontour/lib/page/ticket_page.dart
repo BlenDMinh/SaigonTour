@@ -18,9 +18,9 @@ class TicketPage extends StatefulWidget {
 }
 
 class _TicketPageState extends State<TicketPage> {
-
-  
-
+  void reload() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _TicketPageState extends State<TicketPage> {
           ),
         ),
       );
-    final tourDetails = service.loggedInCustomer!.tourDetails;
+    var tourDetails = service.loggedInCustomer!.tourDetails;
     return MaterialApp(
       home: Scaffold(
           backgroundColor: blackBG,
@@ -52,7 +52,11 @@ class _TicketPageState extends State<TicketPage> {
                       padding: EdgeInsets.all(17),
                       margin: EdgeInsets.all(5.0),
                       color: white,
-                      child: TicketData(tourDetails[index])),
+                      child: TicketData(
+                          tourDetail: tourDetails[index],
+                          callback: () {
+                            this.reload();
+                          })),
                 );
               })),
     );

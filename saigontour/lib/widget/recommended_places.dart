@@ -7,7 +7,9 @@ import 'package:saigontour/page/tourist_details_page.dart';
 
 class RecommendedPlaces extends StatefulWidget {
   //recommendation
-  const RecommendedPlaces({Key? key}) : super(key: key);
+
+  List<TourModel> tour;
+  RecommendedPlaces({Key? key, required this.tour}) : super(key: key);
 
   @override
   State<RecommendedPlaces> createState() => _RecommendedPlacesState();
@@ -39,8 +41,10 @@ class _RecommendedPlacesState extends State<RecommendedPlaces> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => TouristDetailsPage(
-                              image: recommendedPlaces[index].image,
-                              tour: tourModelList[0]),
+                              image: recommendedPlaces[
+                                      index % recommendedPlaces.length]
+                                  .image,
+                              tour: this.widget.tour[index]),
                         ));
                   },
                   child: Padding(
@@ -60,7 +64,7 @@ class _RecommendedPlacesState extends State<RecommendedPlaces> {
                         Row(
                           children: [
                             Text(
-                              tourModelList[0].tourPath.first,
+                              this.widget.tour[index].tourPath.first,
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
@@ -68,7 +72,7 @@ class _RecommendedPlacesState extends State<RecommendedPlaces> {
                             ),
                             const Spacer(),
                             Text(
-                              (tourModelList[0].price).toString(),
+                              (this.widget.tour[index].price).toString(),
                               style:
                                   TextStyle(fontSize: 12, color: littleWhite),
                             )
@@ -84,7 +88,7 @@ class _RecommendedPlacesState extends State<RecommendedPlaces> {
                             ),
                             const SizedBox(width: 5),
                             Text(
-                              tourModelList[0].tourPath.last,
+                              this.widget.tour[index].tourPath.last,
                               style:
                                   TextStyle(fontSize: 12, color: littleWhite),
                             )
@@ -100,7 +104,7 @@ class _RecommendedPlacesState extends State<RecommendedPlaces> {
           separatorBuilder: (context, index) => const Padding(
                 padding: EdgeInsets.only(right: 10),
               ),
-          itemCount: recommendedPlaces.length),
+          itemCount: this.widget.tour.length),
     );
   }
 }

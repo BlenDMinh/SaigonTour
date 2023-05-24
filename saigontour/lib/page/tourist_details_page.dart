@@ -45,7 +45,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('0 ticket'),
-          content: const Text("Congratulation, its free now!"),
+          content: const Text("Chưa có ticket nào được đăng kí!"),
           actions: <Widget>[
             TextButton(
               style: TextButton.styleFrom(
@@ -69,8 +69,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Admin said: '),
-          content: const Text(
-              "You're a fucking stupid cow, didn't know how to log in"),
+          content: const Text("Bạn phải đăng nhập để sử dụngt tính năng này"),
           actions: <Widget>[
             TextButton(
               style: TextButton.styleFrom(
@@ -175,16 +174,22 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                       style: TextStyle(
                           color: white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                          fontSize: 14),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 5),
                     Text(
                       this.tour.description!,
-                      style: TextStyle(color: littleWhite),
+                      style: TextStyle(fontSize: 12, color: littleWhite),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     )
                   ],
                 ),
-                const Spacer(),
+                SizedBox(
+                  width: 10,
+                ),
                 // money part
                 Column(
                   children: [
@@ -198,7 +203,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                   ],
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 5,
                 ),
                 Column(
                   children: [
@@ -210,9 +215,6 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                         keyBordType: TextInputType.number,
                         image: Icons.people),
                   ],
-                ),
-                SizedBox(
-                  width: 10,
                 ),
               ],
             ),
@@ -226,7 +228,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                   children: [
                     Text(
                         "${this.tour.startTime!.day.toString()}/${this.tour.startTime!.month.toString()}/${this.tour.startTime!.year.toString()}",
-                        style: TextStyle(fontSize: 20, color: whiteColor)),
+                        style: TextStyle(fontSize: 16, color: whiteColor)),
                     const SizedBox(height: 1),
                     Text(
                       "Bắt đầu vào",
@@ -234,13 +236,13 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                     ),
                     Text(
                         "${this.tour.startTime!.hour.toString()}:${this.tour.startTime!.minute.toString()}:${this.tour.startTime!.second.toString()}",
-                        style: TextStyle(fontSize: 20, color: whiteColor)),
+                        style: TextStyle(fontSize: 16, color: whiteColor)),
                     const SizedBox(height: 1),
                   ],
                 ),
                 Text(
                   "${NumberFormat.currency(locale: 'eu', symbol: "VND", decimalDigits: 0).format(this.tour.price! * (double.parse(numOfAdult.text) + double.parse(numOfChildren.text) / 2))}",
-                  style: TextStyle(fontSize: 16, color: Colors.yellowAccent),
+                  style: TextStyle(fontSize: 15, color: Colors.yellowAccent),
                 )
               ],
             ),

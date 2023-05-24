@@ -38,10 +38,10 @@ class Avatar extends StatelessWidget {
         padding: EdgeInsets.all(30.0),
         child: ClipRRect(
             borderRadius: BorderRadius.circular(100.0),
-            child: Image.network(
-              "https://storage.proboards.com/6857525/images/fxYZeoztSQXspEfehriC.jpg",
-              width: 170,
+            child: Image.asset(
+              "assets/image/profile.jpeg",
               height: 170,
+              width: 170,
             )));
   }
 }
