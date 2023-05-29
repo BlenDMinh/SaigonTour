@@ -14,14 +14,14 @@ import 'package:saigontour/service/customer_service.dart';
 import 'package:saigontour/widget/main_button.dart';
 import 'package:saigontour/widget/text_fild.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+class EditProfilePage extends StatefulWidget {
+  const EditProfilePage({Key? key}) : super(key: key);
 
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _EditProfilePageState createState() => _EditProfilePageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _EditProfilePageState extends State<EditProfilePage> {
   //Các controller để quản lí các text nhập vào
   TextEditingController userName = TextEditingController();
   TextEditingController age = TextEditingController();
@@ -29,9 +29,10 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController userPh = TextEditingController();
 
   var service = CustomerService();
-
   @override
   Widget build(BuildContext context) {
+    var customer = service.loggedInCustomer;
+    if (customer == null) return Scaffold();
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
@@ -48,12 +49,12 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               SpaceVH(height: 0.0),
               Text(
-                'Create new account',
+                'Cập nhật tài khoản',
                 style: headline1,
               ),
               SpaceVH(height: 10.0),
               Text(
-                'Please fill in the form to continue',
+                'Điền vào form',
                 style: headline3,
               ),
               SpaceVH(height: 60.0),
@@ -61,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 controller: userName,
                 image: CupertinoIcons.person,
                 keyBordType: TextInputType.name,
-                hintTxt: 'Tên đăng nhập',
+                hintTxt: 'Họ và tên',
               ),
               textFild(
                 controller: age,
@@ -69,57 +70,18 @@ class _SignUpPageState extends State<SignUpPage> {
                 keyBordType: TextInputType.name,
                 hintTxt: 'Tuổi',
               ),
-              textFild(
-                controller: userPh,
-                image: CupertinoIcons.phone,
-                keyBordType: TextInputType.phone,
-                hintTxt: 'Số điện thoại',
-              ),
-              textFild(
-                controller: userPass,
-                isObs: true,
-                image: CupertinoIcons.lock,
-                hintTxt: 'Mật khẩu',
-              ),
-              SpaceVH(height: 40.0),
+              SpaceVH(height: 60.0),
               Mainbutton(
                 onTap: () {
-                  Customer customer = Customer(-1, userName.text,
-                      int.parse(age.text), userPh.text, new Set(), []);
-                  RegisterInfo registerInfo =
-                      RegisterInfo(customer, userPass.text);
-                  service.register(registerInfo).then((value) {
-                    print("Registerd");
-                    Navigator.pop(context);
-                  }).onError((error, stackTrace) {
-                    error.printError();
+                  customer.fullname = userName.text;
+                  customer.age = int.parse(age.text);
+                  service.update().then((value) {
+                    Navigator.of(context).pop();
                   });
                 },
-                text: 'Đăng ký',
+                text: 'Cập nhật',
                 btnColor: purpButton,
               ),
-              SpaceVH(height: 20.0),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: RichText(
-                  text: TextSpan(children: [
-                    TextSpan(
-                      text: 'Đã có tài khoản? ',
-                      style: headline.copyWith(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    TextSpan(
-                      text: ' Đăng nhập',
-                      style: headlineDot.copyWith(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                  ]),
-                ),
-              )
             ],
           ),
         ),

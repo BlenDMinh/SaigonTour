@@ -22,7 +22,7 @@ class MNavigator {
     LoginPage(),
   ];
   //có 4 trang và nhiều widget khác
-
+  
   MNavigator.__() {}
 
   navigate(int id) {

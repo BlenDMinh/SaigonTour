@@ -19,12 +19,12 @@ const TextStyle headline1 = TextStyle(
 );
 
 const TextStyle headline2 = TextStyle(
-  fontSize: 14,
+  fontSize: 16,
   color: whiteText,
   fontWeight: FontWeight.w600,
 );
 const TextStyle headline3 = TextStyle(
-  fontSize: 14,
+  fontSize: 16,
   color: grayText,
   fontWeight: FontWeight.bold,
 );

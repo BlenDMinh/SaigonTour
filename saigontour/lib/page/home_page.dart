@@ -44,20 +44,35 @@ class _HomePageState extends State<HomePage> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               foregroundColor: littleWhite,
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              title: Row(
                 children: [
-                  const SizedBox(height: 10),
-                  const Text(
-                    "Chào bạn",
-                    style: TextStyle(fontSize: 13),
+                  Container(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Icon(
+                      Icons.tour_sharp,
+                      color: purpButton,
+                      size: 45,
+                    ),
                   ),
-                  Text(
-                    customerService.loggedInCustomer?.fullname ?? "",
-                    style: TextStyle(
-                        color: whiteColor,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w800),
+                  SizedBox(
+                    width: 7,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 10),
+                      const Text(
+                        "Chào bạn",
+                        style: TextStyle(fontSize: 13),
+                      ),
+                      Text(
+                        customerService.loggedInCustomer?.fullname ?? "",
+                        style: TextStyle(
+                            color: whiteColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w800),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -69,7 +84,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(14),
               children: [
                 // LOCATION CARD để lấy địa chỉ hiện tại của user
-                const LocationCard(),
+                //const LocationCard(),
                 const SizedBox(
                   height: 15,
                 ),

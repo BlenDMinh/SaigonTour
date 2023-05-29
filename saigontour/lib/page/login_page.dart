@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
                 'Please sign in to your account',
                 style: headline3,
               ),
-              SpaceVH(height: 60.0),
+              SpaceVH(height: 80.0),
               textFild(
                 controller: phoneNum,
                 image: CupertinoIcons.phone,
@@ -56,7 +56,7 @@ class LoginPage extends StatelessWidget {
                 isObs: true,
                 hintTxt: 'Password',
               ),
-              SpaceVH(height: 200.0),
+              SpaceVH(height: 80.0),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Column(
@@ -80,8 +80,7 @@ class LoginPage extends StatelessWidget {
                       text: 'Sign in',
                       btnColor: purpButton,
                     ),
-                    SpaceVH(height: 40.0),
-                    SpaceVH(height: 20.0),
+                    SpaceVH(height: 30.0),
                     TextButton(
                       onPressed: () {
                         Navigator.push(

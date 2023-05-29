@@ -69,7 +69,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Admin said: '),
+          title: const Text('Admin: '),
           content: const Text("Bạn phải đăng nhập để sử dụngt tính năng này"),
           actions: <Widget>[
             TextButton(
